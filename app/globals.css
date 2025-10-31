@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Minimal Beige Theme - WHITE Coffee Style */
+  --primary: #2b2825;
+  --primary-dark: #1a1715;
+  --secondary: #d4c5b0;
+  --accent: #a68a64;
+  --background: #f5f1ea;
+  --foreground: #2b2825;
+  --muted: #e8e3d9;
+  --border: #d4c5b0;
+  --cream: #faf8f3;
+  --beige-light: #f5f1ea;
+  --beige-dark: #e8e3d9;
+  --brown: #2b2825;
+  --brown-light: #5a534e;
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-noto-sans-kr);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-noto-sans-kr), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* 스크롤바 숨기기 */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* 섹션 공통 스타일 - 더 많은 여백 */
+.section {
+  padding: 8rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 12rem 3rem;
+  }
+}
+
+/* 컨테이너 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 버튼 기본 스타일 - Minimal */
+.btn-primary {
+  background-color: var(--brown);
+  color: var(--cream);
+  padding: 1rem 2rem;
+  border-radius: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--brown);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--brown);
+  transform: translateY(-1px);
+}
+
+/* 서비스 카드 그리드 반응형 */
+@media (max-width: 767px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
