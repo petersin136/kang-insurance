@@ -48,18 +48,33 @@ export default function PromiseSection() {
           transition={{ duration: 0.8 }}
         >
           {/* 모바일 버전 */}
-          <div className="md:hidden space-y-6">
+          <div className="md:hidden space-y-5">
             <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              {content.text1}
+              솔직히 말하면 그렇습니다.
             </p>
             
             <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              {content.text2}<br />
-              {content.text3}
+              우린 매달 피 같은 돈을 냅니다.
+            </p>
+            
+            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
+              그런데 내 보험이<br />
+              지금 뭘 보장하고,<br />
+              언제까지 유지되고,
+            </p>
+            
+            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
+              정말 필요한 보장에<br />
+              잘 들어가 있는지…<br />
+              정확히 알고 계신가요?
             </p>
             
             <p className="text-[16px] leading-[1.8] text-[#7a706b] font-light">
-              {content.text4}
+              대부분은 그저<br />
+              서랍 속에 쌓여 있는 보험증권,<br />
+              핸드폰 어딘가에 저장된 보험 파일,<br />
+              언제 가입했는지도<br />
+              가물가물한 계약들.
             </p>
 
             <motion.p
@@ -68,7 +83,9 @@ export default function PromiseSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-[20px] leading-[1.5] font-bold text-[#2b2825] pt-4"
             >
-              {content.text5}
+              "아마 잘 되어 있겠지"<br />
+              "괜찮겠지" 하고 지나치기엔<br />
+              가족의 안심이 달린 일입니다.
             </motion.p>
           </div>
 

@@ -418,20 +418,107 @@ export default function ContactSectionUpgraded() {
               {showPrivacy && (
                 <div style={{
                   marginTop: '16px',
-                  padding: '16px',
+                  padding: '20px',
                   background: 'rgba(255, 255, 255, 0.05)',
                   borderRadius: '8px',
                   fontSize: '13px',
                   color: '#c5c5c5',
-                  lineHeight: '1.8',
-                  maxHeight: '200px',
-                  overflowY: 'auto'
+                  lineHeight: '1.9',
+                  maxHeight: '400px',
+                  overflowY: 'auto',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}>
-                  <p style={{ marginBottom: '12px', fontWeight: '600', color: '#ffffff' }}>개인정보 수집 및 이용 안내</p>
-                  <p style={{ marginBottom: '8px' }}><strong>1. 수집 항목:</strong> 이름, 연락처, 이메일, 상담 내용</p>
-                  <p style={{ marginBottom: '8px' }}><strong>2. 수집 목적:</strong> 보험 상담 및 서비스 제공</p>
-                  <p style={{ marginBottom: '8px' }}><strong>3. 보유 기간:</strong> 상담 완료 후 3년 또는 동의 철회 시까지</p>
-                  <p style={{ marginBottom: '8px' }}><strong>4. 거부 권리:</strong> 개인정보 수집 및 이용을 거부할 권리가 있으며, 거부 시 상담 서비스 제공이 제한될 수 있습니다.</p>
+                  <p style={{ marginBottom: '16px', fontWeight: '700', color: '#ffffff', fontSize: '15px', borderBottom: '1px solid rgba(255, 255, 255, 0.2)', paddingBottom: '12px' }}>
+                    개인정보 수집 및 이용에 대한 안내
+                  </p>
+                  
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>1. 개인정보의 수집 및 이용 목적</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험 상담 및 컨설팅 서비스 제공</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험 상품 안내 및 가입 권유</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 고객 문의사항 처리 및 민원 해결</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험계약 체결 및 유지 관리</p>
+                    <p style={{ paddingLeft: '12px' }}>• 법령상 의무 이행 (금융실명거래 및 비밀보장에 관한 법률 등)</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>2. 수집하는 개인정보 항목</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>필수항목:</strong> 성명, 휴대전화번호, 이메일 주소, 상담 내용</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>자동수집:</strong> IP 주소, 쿠키, 접속 로그, 방문 일시</p>
+                    <p style={{ paddingLeft: '12px', fontSize: '12px', color: '#999' }}>
+                      ※ 보험계약 체결 시 생년월일, 주소, 직업 등 추가 정보가 필요할 수 있습니다.
+                    </p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>3. 개인정보의 보유 및 이용기간</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 상담 신청 시로부터 <strong>3년</strong> (금융 관련 법령에 따른 최소 보존기간)</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험계약 체결 시: 계약 종료 후 5년 (상법, 전자금융거래법)</p>
+                    <p style={{ paddingLeft: '12px' }}>• 동의 철회 요청 시 지체없이 파기 (단, 법령에 따라 보존이 필요한 경우 예외)</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>4. 개인정보의 제3자 제공</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 원칙적으로 고객의 개인정보를 제3자에게 제공하지 않습니다.</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 다만, 보험계약 체결을 위해 <strong>보험회사</strong>에 필요 최소한의 정보를 제공할 수 있으며, 이 경우 사전에 별도 동의를 받습니다.</p>
+                    <p style={{ paddingLeft: '12px', fontSize: '12px', color: '#999' }}>
+                      (제공받는 자: 각 보험회사 / 제공 항목: 성명, 생년월일, 연락처 등 / 이용 목적: 보험계약 심사 및 체결)
+                    </p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>5. 개인정보 처리위탁</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 업무 효율화를 위해 개인정보 처리업무를 외부에 위탁할 수 있습니다.</p>
+                    <p style={{ paddingLeft: '12px' }}>• 위탁 시 개인정보보호 관련 법규 준수를 위해 위탁계약서 등을 통해 엄격히 관리합니다.</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>6. 정보주체의 권리·의무 및 행사방법</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>귀하는 개인정보 주체로서 다음과 같은 권리를 행사할 수 있습니다:</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 열람, 정정, 삭제 요구</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 처리정지 요구</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 동의 철회 (회원 탈퇴)</p>
+                    <p style={{ paddingLeft: '12px', fontSize: '12px', color: '#999' }}>
+                      ※ 권리 행사는 서면, 전화, 이메일 등을 통해 가능하며, 대리인을 통한 요구도 가능합니다.
+                    </p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>7. 개인정보의 파기 절차 및 방법</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>파기절차:</strong> 보유기간 경과 시 내부 방침에 따라 지체없이 파기</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>파기방법:</strong> 전자적 파일은 복구 불가능하도록 영구 삭제, 종이 문서는 분쇄 또는 소각</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>8. 개인정보 보호책임자</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 성명: 강성현</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 연락처: 010-4111-5552</p>
+                    <p style={{ paddingLeft: '12px' }}>• 이메일: kangsh6917@naver.com</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>9. 개인정보의 안전성 확보조치</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 암호화 및 접근권한 관리</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 해킹 등에 대비한 기술적 대책</p>
+                    <p style={{ paddingLeft: '12px' }}>• 개인정보 취급 직원의 최소화 및 교육</p>
+                  </div>
+
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>10. 동의 거부권 및 불이익</p>
+                    <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 귀하는 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.</p>
+                    <p style={{ paddingLeft: '12px' }}>• 다만, 필수항목 동의를 거부하실 경우 보험 상담 및 계약 체결이 제한될 수 있습니다.</p>
+                  </div>
+
+                  <div style={{ 
+                    marginTop: '20px', 
+                    paddingTop: '16px', 
+                    borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                    fontSize: '12px',
+                    color: '#999'
+                  }}>
+                    <p style={{ marginBottom: '4px' }}>본 동의는 상담 신청일로부터 효력이 발생하며, 동의 이후에라도 언제든지 철회 가능합니다.</p>
+                    <p>개인정보보호법, 신용정보의 이용 및 보호에 관한 법률, 금융실명거래 및 비밀보장에 관한 법률 등 관련 법령에 따라 처리됩니다.</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -480,6 +567,58 @@ export default function ContactSectionUpgraded() {
               * 표시는 필수 입력 항목입니다
             </p>
           </motion.form>
+        </div>
+
+        {/* 모바일 전용 관리자 링크 */}
+        <div className="md:hidden" style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          paddingTop: '60px',
+          paddingBottom: '40px'
+        }}>
+          <a
+            href="/manage"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '14px 28px',
+              background: '#2b2825',
+              border: '2px solid #a68a64',
+              borderRadius: '50px',
+              color: '#ffffff',
+              fontSize: '15px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+            }}
+            onTouchStart={(e) => {
+              e.currentTarget.style.background = '#a68a64';
+              e.currentTarget.style.borderColor = '#8b7355';
+              e.currentTarget.style.transform = 'scale(0.98)';
+            }}
+            onTouchEnd={(e) => {
+              e.currentTarget.style.background = '#2b2825';
+              e.currentTarget.style.borderColor = '#a68a64';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <svg 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5"
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            관리자 모드
+          </a>
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
@@ -41,8 +40,8 @@ export default function TestimonialsSectionUpgraded() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section ref={ref} style={{ padding: 'clamp(40px, 10vw, 96px) 0', background: 'linear-gradient(to bottom right, #eff6ff, #dbeafe)', width: '100%', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(16px, 4vw, 16px)', width: '100%' }}>
+    <section ref={ref} style={{ padding: 'clamp(40px, 10vw, 96px) 0', background: 'linear-gradient(to bottom right, #eff6ff, #dbeafe)', width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(16px, 4vw, 48px)', width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -56,7 +55,7 @@ export default function TestimonialsSectionUpgraded() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto relative">
+        <div style={{ maxWidth: '896px', margin: '0 auto', position: 'relative', width: '100%' }}>
           <motion.div
             key={current}
             initial={{ opacity: 0, x: 50 }}
@@ -81,53 +80,81 @@ export default function TestimonialsSectionUpgraded() {
             </p>
 
             {/* 고객 정보 */}
-            <div className="flex items-center justify-between">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div className="font-bold text-gray-900 text-lg">
+                <div style={{ fontWeight: 'bold', color: '#111827', fontSize: '18px', marginBottom: '4px' }}>
                   {testimonials[current].name}
                 </div>
-                <div className="text-gray-500">
+                <div style={{ color: '#6b7280', fontSize: '14px' }}>
                   {testimonials[current].age}세 · {testimonials[current].occupation}
                 </div>
               </div>
-              <div className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-medium">
+              <div style={{ padding: '8px 16px', background: '#dbeafe', color: '#1d4ed8', borderRadius: '50px', fontWeight: '500', fontSize: '14px' }}>
                 {testimonials[current].insurance}
               </div>
             </div>
           </motion.div>
 
           {/* 네비게이션 */}
-          <div className="flex justify-center items-center space-x-4 mt-8">
-            <Button
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '32px' }}>
+            <button
               onClick={prev}
-              variant="outline"
-              size="icon"
-              className="rounded-full"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: '1px solid #e5e7eb',
+                background: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#f3f4f6'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
             >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
+              <ChevronLeft style={{ width: '20px', height: '20px' }} />
+            </button>
 
             {/* 인디케이터 */}
-            <div className="flex space-x-2">
+            <div style={{ display: 'flex', gap: '8px' }}>
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === current ? 'bg-blue-600 w-8' : 'bg-blue-300'
-                  }`}
+                  style={{
+                    width: index === current ? '32px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    background: index === current ? '#2563eb' : '#93c5fd',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s'
+                  }}
                 />
               ))}
             </div>
 
-            <Button
+            <button
               onClick={next}
-              variant="outline"
-              size="icon"
-              className="rounded-full"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: '1px solid #e5e7eb',
+                background: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#f3f4f6'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
             >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+              <ChevronRight style={{ width: '20px', height: '20px' }} />
+            </button>
           </div>
         </div>
       </div>
