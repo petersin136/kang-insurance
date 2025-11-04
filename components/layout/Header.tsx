@@ -59,6 +59,20 @@ export default function Header() {
     >
       <div className="h-full px-6 md:px-12 max-w-screen-2xl mx-auto">
         <div className="flex items-center justify-center h-full w-full relative">
+          {/* 로고 - 왼쪽 고정 */}
+          <Link 
+            href="https://primeasset.kr/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute left-24 md:left-32 z-50 hidden md:block"
+          >
+            <img 
+              src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
+              alt="Prime Asset"
+              className="h-10 md:h-12 w-auto object-contain drop-shadow-lg"
+            />
+          </Link>
+
           {/* 데스크톱 네비게이션 - 스크롤 시 오른쪽으로 이동 */}
           <motion.nav 
             style={{ 
@@ -77,18 +91,33 @@ export default function Header() {
             ))}
           </motion.nav>
 
-          {/* 모바일 햄버거 메뉴 버튼 - 가운데 배치 */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white drop-shadow-lg mx-auto"
-            aria-label="메뉴"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-9 h-9" strokeWidth={2.5} />
-            ) : (
-              <Menu className="w-9 h-9" strokeWidth={2.5} />
-            )}
-          </button>
+          {/* 모바일: 로고(왼쪽) + 햄버거(오른쪽) */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <Link 
+              href="https://primeasset.kr/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="z-50 ml-6"
+            >
+              <img 
+                src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
+                alt="Prime Asset"
+                className="h-8 w-auto object-contain drop-shadow-lg"
+              />
+            </Link>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white drop-shadow-lg"
+              aria-label="메뉴"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-9 h-9" strokeWidth={2.5} />
+              ) : (
+                <Menu className="w-9 h-9" strokeWidth={2.5} />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* 모바일 햄버거 메뉴 */}
@@ -109,7 +138,7 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <img 
-                    src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/prime%20logo.jpg" 
+                    src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png" 
                     alt="프라임에셋"
                     className="h-12 w-auto object-contain"
                   />

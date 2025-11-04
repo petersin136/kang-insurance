@@ -4,45 +4,48 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2b2825] text-[#d4c5b0]">
-      <div className="max-w-screen-2xl mx-auto px-6 md:px-12 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="bg-[#faf8f3] border-t border-[#e8e3d9] hidden md:block">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:px-12 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* 회사 정보 */}
           <div>
-            <h3 className="text-[#faf8f3] text-2xl font-light mb-6 tracking-wider">
-              kang
+            <h3 className="text-2xl font-bold text-[#2b2825] mb-4 tracking-tight">
+              PRIME ASSET
             </h3>
-            <p className="text-sm font-light leading-relaxed mb-6">
-              25년 경력의 전문 보험설계사가<br />
-              제공하는 맞춤형 솔루션
+            <p className="text-sm text-[#5a534e] leading-relaxed mb-4">
+              손해 생명보험 총괄대리인<br />
+              보험보장분석 보무민모델링
             </p>
-            <div className="space-y-3 text-sm font-light">
-              <p>010-XXXX-XXXX</p>
-              <p>info@kang-insurance.com</p>
+            <div className="text-sm text-[#5a534e] space-y-2">
+              <p>T. 033-763-9785</p>
+              <p>M. 010-4111-5552</p>
+              <p>kangsh6917@naver.com</p>
             </div>
           </div>
 
           {/* 빠른 링크 */}
           <div>
-            <h3 className="text-[#faf8f3] text-xs font-light tracking-[0.2em] uppercase mb-6">Quick Links</h3>
-            <ul className="space-y-3 text-sm font-light">
+            <h3 className="text-[11px] font-light tracking-[0.35em] uppercase text-[#a68a64] mb-6">
+              Quick Links
+            </h3>
+            <ul className="space-y-3 text-sm text-[#5a534e]">
               <li>
-                <Link href="/#about" className="hover:text-[#faf8f3] transition-colors">
+                <Link href="/#about" className="hover:text-[#2b2825] transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/#services" className="hover:text-[#faf8f3] transition-colors">
+                <Link href="/#services" className="hover:text-[#2b2825] transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className="hover:text-[#faf8f3] transition-colors">
+                <Link href="/#testimonials" className="hover:text-[#2b2825] transition-colors">
                   Stories
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="hover:text-[#faf8f3] transition-colors">
+                <Link href="/#contact" className="hover:text-[#2b2825] transition-colors">
                   Contact
                 </Link>
               </li>
@@ -51,8 +54,10 @@ export default function Footer() {
 
           {/* 보험 상품 */}
           <div>
-            <h3 className="text-[#faf8f3] text-xs font-light tracking-[0.2em] uppercase mb-6">Products</h3>
-            <ul className="space-y-3 text-sm font-light">
+            <h3 className="text-[11px] font-light tracking-[0.35em] uppercase text-[#a68a64] mb-6">
+              Products
+            </h3>
+            <ul className="space-y-3 text-sm text-[#5a534e]">
               <li>생명보험</li>
               <li>건강보험</li>
               <li>연금보험</li>
@@ -61,34 +66,48 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 상담 시간 */}
+          {/* 주소 */}
           <div>
-            <h3 className="text-[#faf8f3] text-xs font-light tracking-[0.2em] uppercase mb-6">Business Hours</h3>
-            <ul className="space-y-3 text-sm font-light">
-              <li>평일 09:00 - 18:00</li>
-              <li>토요일 09:00 - 13:00</li>
-              <li>일요일/공휴일 휴무</li>
-            </ul>
+            <h3 className="text-[11px] font-light tracking-[0.35em] uppercase text-[#a68a64] mb-6">
+              Office
+            </h3>
+            <p className="text-sm text-[#5a534e] leading-relaxed mb-6">
+              강원특별자치도 원주시<br />
+              능라동길65, 803호<br />
+              (유포타워 8층)
+            </p>
             <Link
               href="#contact"
-              className="inline-block mt-6 px-8 py-3 text-[10px] font-light tracking-[0.3em] uppercase border border-[#faf8f3] text-[#faf8f3] hover:bg-[#faf8f3] hover:text-[#2b2825] transition-all duration-400"
+              className="inline-block px-8 py-3 text-[11px] font-light tracking-[0.35em] uppercase border border-[#2b2825] text-[#2b2825] hover:bg-[#2b2825] hover:text-[#faf8f3] transition-all duration-500"
             >
               상담 신청
             </Link>
           </div>
         </div>
 
-        <div className="border-t border-[#5a534e] mt-12 pt-8 text-center text-xs font-light">
-          <p className="text-[#a68a64]">
-            &copy; {currentYear} Kang Insurance. All rights reserved.
+        <div className="pt-8 border-t border-[#e8e3d9] text-center">
+          <p className="text-xs text-[#5a534e] mb-4">
+            &copy; {currentYear} Prime Asset. All rights reserved.
           </p>
-          <div className="mt-4 space-x-6 text-[#a68a64]">
-            <Link href="/privacy" className="hover:text-[#faf8f3] transition-colors">
+          <div className="flex items-center justify-center gap-6 text-xs text-[#5a534e]">
+            <Link href="/privacy" className="hover:text-[#2b2825] transition-colors">
               개인정보처리방침
             </Link>
-            <span className="opacity-50">·</span>
-            <Link href="/terms" className="hover:text-[#faf8f3] transition-colors">
+            <span className="opacity-40">·</span>
+            <Link href="/terms" className="hover:text-[#2b2825] transition-colors">
               이용약관
+            </Link>
+            <span className="opacity-40">·</span>
+            <Link 
+              href="/manage" 
+              className="hover:text-[#2b2825] transition-colors flex items-center gap-1"
+              title="관리자"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span className="opacity-0 hover:opacity-100 transition-opacity">관리자</span>
             </Link>
           </div>
         </div>

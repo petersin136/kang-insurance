@@ -1,24 +1,37 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// 환경변수에서 가져오기
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Supabase URL 또는 Anon Key가 설정되지 않았습니다.');
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// 타입 정의
+export interface ContactSubmission {
+  id?: string
+  name: string
+  phone: string
+  email?: string
+  message?: string
+  agreed: boolean
+  created_at?: string
 }
 
-// 클라이언트 사이드용 Supabase 클라이언트
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export interface RecommendedProduct {
+  id?: string
+  insurance_type: string
+  title: string
+  description?: string
+  image_url?: string
+  content?: string
+  order_index?: number
+  created_at?: string
+}
 
-// 서버 사이드용 Supabase 클라이언트 (Service Role Key 사용)
-export const supabaseAdmin = createClient(
-  supabaseUrl,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-    },
-  }
-);
-
+export interface ContentEdit {
+  id?: string
+  section_name: string
+  field_name: string
+  content: string
+  updated_at?: string
+}
