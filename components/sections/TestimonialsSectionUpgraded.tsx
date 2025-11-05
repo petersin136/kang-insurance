@@ -242,14 +242,14 @@ export default function TestimonialsSectionUpgraded() {
                 e.currentTarget.style.borderColor = '#000000';
                 e.currentTarget.style.transform = 'scale(1.1)';
                 const svg = e.currentTarget.querySelector('svg');
-                if (svg) (svg as HTMLElement).style.color = '#ffffff';
+                if (svg) (svg as any).style.color = '#ffffff';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#ffffff';
                 e.currentTarget.style.borderColor = '#e5e7eb';
                 e.currentTarget.style.transform = 'scale(1)';
                 const svg = e.currentTarget.querySelector('svg');
-                if (svg) (svg as HTMLElement).style.color = '#1a1a1a';
+                if (svg) (svg as any).style.color = '#1a1a1a';
               }}
             >
               <ChevronLeft style={{ width: '20px', height: '20px', color: '#1a1a1a', transition: 'color 0.3s' }} />
@@ -298,14 +298,14 @@ export default function TestimonialsSectionUpgraded() {
                 e.currentTarget.style.borderColor = '#000000';
                 e.currentTarget.style.transform = 'scale(1.1)';
                 const svg = e.currentTarget.querySelector('svg');
-                if (svg) (svg as HTMLElement).style.color = '#ffffff';
+                if (svg) (svg as any).style.color = '#ffffff';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#ffffff';
                 e.currentTarget.style.borderColor = '#e5e7eb';
                 e.currentTarget.style.transform = 'scale(1)';
                 const svg = e.currentTarget.querySelector('svg');
-                if (svg) (svg as HTMLElement).style.color = '#1a1a1a';
+                if (svg) (svg as any).style.color = '#1a1a1a';
               }}
             >
               <ChevronRight style={{ width: '20px', height: '20px', color: '#1a1a1a', transition: 'color 0.3s' }} />
