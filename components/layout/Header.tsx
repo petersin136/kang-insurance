@@ -69,7 +69,7 @@ export default function Header() {
             <img 
               src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
               alt="Prime Asset"
-              className="h-10 md:h-12 w-auto object-contain drop-shadow-lg"
+              className="h-8 md:h-10 w-auto object-contain drop-shadow-lg"
             />
           </Link>
 
@@ -102,7 +102,7 @@ export default function Header() {
               <img 
                 src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
                 alt="Prime Asset"
-                className="h-8 w-auto object-contain drop-shadow-lg"
+                className="h-7 w-auto object-contain drop-shadow-lg"
               />
             </Link>
 
