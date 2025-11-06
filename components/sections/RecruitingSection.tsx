@@ -1,8 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { 
   Heart,
   TrendingUp,
@@ -13,7 +12,8 @@ import {
   ArrowRight,
   Check,
   Award,
-  Send
+  Send,
+  Handshake
 } from 'lucide-react';
 
 const easeBezier = [0.25, 1, 0.5, 1] as const;
@@ -26,6 +26,7 @@ type BenefitItem = {
   icon: any;
   color: string;
   image: string;
+  details: string[];
 };
 
 const BENEFITS: BenefitItem[] = [
@@ -36,7 +37,13 @@ const BENEFITS: BenefitItem[] = [
     highlight: '업계 최고',
     icon: TrendingUp,
     color: 'from-green-500 to-emerald-600',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '신입 설계사도 안정적인 수입 보장',
+      '1년간 최소 월 300만원 보장',
+      '업계 최고 수준의 보장 제도',
+      '성과에 따른 추가 수익 가능'
+    ]
   },
   {
     id: 'no-friends',
@@ -45,7 +52,13 @@ const BENEFITS: BenefitItem[] = [
     highlight: '차별화',
     icon: Shield,
     color: 'from-blue-500 to-cyan-600',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '검증된 고품질 고객 DB 제공',
+      '지인 관계를 지키며 전문적 영업',
+      '전문 영업 기법 교육',
+      '고객 만족도 기반 성장'
+    ]
   },
   {
     id: 'education',
@@ -54,7 +67,13 @@ const BENEFITS: BenefitItem[] = [
     highlight: '전문성',
     icon: GraduationCap,
     color: 'from-purple-500 to-pink-600',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '1:1 멘토링 시스템',
+      '기초부터 고급까지 단계별 교육',
+      '실전 영업 기법 습득',
+      '지속적인 성장 지원'
+    ]
   },
   {
     id: 'family',
@@ -63,7 +82,13 @@ const BENEFITS: BenefitItem[] = [
     highlight: '신뢰',
     icon: Heart,
     color: 'from-red-500 to-orange-600',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '서로를 응원하는 팀 문화',
+      '24시간 지원 시스템',
+      '정기적인 팀 미팅 및 워크샵',
+      '평생 함께할 동료와의 만남'
+    ]
   }
 ];
 
@@ -72,31 +97,55 @@ const PROCESS_STEPS = [
     step: '01',
     title: '간단한 상담',
     desc: '전화 또는 카톡으로 편하게 문의하세요',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '전화 또는 카카오톡으로 간편하게 문의',
+      '부담 없는 상담 진행',
+      '24시간 내 답변 보장',
+      '궁금한 점 자유롭게 질문'
+    ]
   },
   {
     step: '02',
     title: '1:1 미팅',
     desc: '강성현 지점장과 커피 한잔 나누며 이야기해요',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '강성현 지점장과 직접 만남',
+      '편안한 분위기에서 대화',
+      '조직 문화와 비전 공유',
+      '서로를 알아가는 시간'
+    ]
   },
   {
     step: '03',
     title: '교육 시작',
     desc: '기초부터 탄탄하게 영업의 A to Z를 배웁니다',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '체계적인 교육 커리큘럼',
+      '1:1 멘토링 시작',
+      '실전 영업 기법 학습',
+      '지속적인 피드백과 개선'
+    ]
   },
   {
     step: '04',
     title: '함께 성장',
     desc: '평생 함께할 동료이자 가족으로 성장합니다',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop',
+    details: [
+      '팀원으로서의 정식 합류',
+      '지속적인 성장 지원',
+      '평생 함께할 동료와의 만남',
+      '함께 만들어가는 미래'
+    ]
   }
 ];
 
 export default function RecruitingSection() {
-  const [activeBenefit, setActiveBenefit] = useState(0);
-  const [activeProcess, setActiveProcess] = useState(0);
+  const [activeBenefit, setActiveBenefit] = useState<number | null>(null);
+  const [activeProcess, setActiveProcess] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -104,40 +153,30 @@ export default function RecruitingSection() {
     message: ''
   });
 
-  const benefitPanelKey = BENEFITS[activeBenefit].id;
-  const processPanelKey = PROCESS_STEPS[activeProcess].step;
-
-  // Keyboard navigation for benefits
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        setActiveBenefit((i) => Math.min(i + 1, BENEFITS.length - 1));
-      } else if (e.key === 'ArrowLeft') {
-        setActiveBenefit((i) => Math.max(i - 1, 0));
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
     alert('상담 신청이 접수되었습니다! 곧 연락드리겠습니다.');
     setFormData({ name: '', phone: '', email: '', message: '' });
   };
 
   return (
-    <div style={{ width: '100%', background: '#000' }}>
+    <div style={{ width: '100%', background: '#000', color: '#fff' }}>
       {/* Section 1: 당신의 첫 시작이, 최고의 시작이 되도록 */}
-      <section style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#000', color: '#fff', padding: 'clamp(60px, 10vw, 120px) 0' }}>
+      <section style={{ 
+        position: 'relative', 
+        width: '100%', 
+        overflow: 'hidden', 
+        background: '#000', 
+        padding: 'clamp(60px, 10vw, 120px) 0' 
+      }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
           <h2 style={{
             fontSize: 'clamp(32px, 6vw, 72px)',
             fontWeight: '800',
             textAlign: 'center',
             marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.1'
+            lineHeight: '1.1',
+            color: '#fff'
           }}>
             당신의 첫 시작이,
             <br />
@@ -151,131 +190,164 @@ export default function RecruitingSection() {
             </span>
           </h2>
 
-          {/* Benefits Carousel */}
-          <div style={{ position: 'relative', marginTop: 'clamp(40px, 6vw, 60px)' }}>
-            <div style={{
-              display: 'flex',
-              gap: '16px',
-              overflowX: 'auto',
-              paddingBottom: '20px',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none'
-            }} className="hide-scrollbar">
-              {BENEFITS.map((benefit, idx) => {
-                const dist = idx - activeBenefit;
-                const offset = Math.max(-1, Math.min(1, dist)) * 18;
-                const Icon = benefit.icon;
-                return (
-                  <motion.button
-                    key={benefit.id}
-                    onClick={() => setActiveBenefit(idx)}
-                    style={{
-                      position: 'relative',
-                      height: '72vh',
-                      minWidth: '180px',
-                      flex: 1,
-                      borderRadius: '24px',
-                      overflow: 'hidden',
-                      border: idx === activeBenefit ? '1px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)',
-                      opacity: idx === activeBenefit ? 1 : 0.9,
-                      cursor: 'pointer',
-                      backgroundImage: `url(${benefit.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                    animate={{ x: offset }}
-                    transition={{ duration: 0.9, ease: easeBezier }}
-                    onMouseEnter={(e) => {
-                      if (idx !== activeBenefit) e.currentTarget.style.opacity = '1';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (idx !== activeBenefit) e.currentTarget.style.opacity = '0.9';
-                    }}
-                  >
-                    <div style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
-                      pointerEvents: 'none'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      width: '1px',
-                      background: 'rgba(255,255,255,0.1)',
-                      pointerEvents: 'none'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      right: 0,
-                      width: '1px',
-                      background: 'rgba(255,255,255,0.1)',
-                      pointerEvents: 'none'
-                    }} />
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* Content Panel */}
-            <div style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: '600px',
-              zIndex: 10,
-              pointerEvents: 'none'
-            }}>
-              <AnimatePresence mode="wait">
+          {/* Benefits Strips */}
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            alignItems: 'flex-start',
+            minHeight: '600px'
+          }}>
+            {BENEFITS.map((benefit, idx) => {
+              const Icon = benefit.icon;
+              const isExpanded = activeBenefit === idx;
+              return (
                 <motion.div
-                  key={benefitPanelKey}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12, scale: 0.97 }}
-                  transition={{ duration: 1.1, ease: easeBezier }}
-                  style={{
-                    pointerEvents: 'auto',
-                    borderRadius: '28px',
-                    background: '#fff',
-                    padding: 'clamp(24px, 4vw, 32px)',
-                    color: '#000',
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.5)'
+                  key={benefit.id}
+                  initial={false}
+                  animate={{
+                    flex: isExpanded ? 3 : 1,
+                    minWidth: isExpanded ? '400px' : '180px'
                   }}
+                  transition={{ duration: 0.8, ease: easeBezier }}
+                  style={{
+                    position: 'relative',
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    backgroundImage: `url(${benefit.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    border: isExpanded ? '2px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)'
+                  }}
+                  onClick={() => setActiveBenefit(isExpanded ? null : idx)}
                 >
                   <div style={{
-                    fontSize: 'clamp(10px, 1.2vw, 12px)',
-                    fontWeight: '600',
-                    letterSpacing: '0.14em',
-                    color: '#6b7280',
-                    marginBottom: '8px',
-                    textTransform: 'uppercase'
-                  }}>
-                    {BENEFITS[activeBenefit].highlight}
-                  </div>
-                  <h3 style={{
-                    fontSize: 'clamp(20px, 3vw, 32px)',
-                    fontWeight: '800',
-                    lineHeight: '1.2',
-                    marginBottom: '16px'
-                  }}>
-                    {BENEFITS[activeBenefit].title}
-                  </h3>
-                  <p style={{
-                    fontSize: 'clamp(14px, 2vw, 18px)',
-                    color: '#4b5563',
-                    lineHeight: '1.6'
-                  }}>
-                    {BENEFITS[activeBenefit].description}
-                  </p>
+                    position: 'absolute',
+                    inset: 0,
+                    background: isExpanded 
+                      ? 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))'
+                      : 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
+                    transition: 'background 0.3s'
+                  }} />
+                  
+                  <AnimatePresence>
+                    {isExpanded ? (
+                      <motion.div
+                        key="expanded"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                        style={{
+                          position: 'relative',
+                          zIndex: 10,
+                          padding: 'clamp(32px, 5vw, 48px)',
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        <div>
+                          <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '16px',
+                            background: `linear-gradient(to bottom right, ${benefit.color.includes('green') ? '#10b981, #059669' : benefit.color.includes('blue') ? '#3b82f6, #06b6d4' : benefit.color.includes('purple') ? '#a855f7, #ec4899' : '#ef4444, #f97316'})`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '24px'
+                          }}>
+                            <Icon style={{ width: '28px', height: '28px', color: 'white' }} />
+                          </div>
+                          
+                          <div style={{
+                            display: 'inline-block',
+                            background: 'rgba(255,255,255,0.2)',
+                            backdropFilter: 'blur(10px)',
+                            color: '#fff',
+                            fontSize: 'clamp(10px, 1.2vw, 12px)',
+                            fontWeight: '700',
+                            padding: '6px 14px',
+                            borderRadius: '50px',
+                            marginBottom: '16px'
+                          }}>
+                            {benefit.highlight}
+                          </div>
+                          
+                          <h3 style={{
+                            fontSize: 'clamp(24px, 3.5vw, 36px)',
+                            fontWeight: '800',
+                            color: '#fff',
+                            marginBottom: '16px',
+                            lineHeight: '1.2'
+                          }}>
+                            {benefit.title}
+                          </h3>
+                          
+                          <p style={{
+                            color: 'rgba(255,255,255,0.9)',
+                            fontSize: 'clamp(16px, 2.2vw, 20px)',
+                            marginBottom: '32px',
+                            lineHeight: '1.6'
+                          }}>
+                            {benefit.description}
+                          </p>
+
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                            {benefit.details.map((detail, i) => (
+                              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                                <Check style={{ width: '20px', height: '20px', color: '#10b981', flexShrink: 0, marginTop: '2px' }} />
+                                <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(14px, 1.8vw, 18px)', lineHeight: '1.6' }}>
+                                  {detail}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="collapsed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                          position: 'absolute',
+                          bottom: '24px',
+                          left: '24px',
+                          right: '24px',
+                          zIndex: 10
+                        }}
+                      >
+                        <div style={{
+                          display: 'inline-block',
+                          background: 'rgba(255,255,255,0.2)',
+                          backdropFilter: 'blur(10px)',
+                          color: '#fff',
+                          fontSize: 'clamp(10px, 1.2vw, 12px)',
+                          fontWeight: '700',
+                          padding: '6px 14px',
+                          borderRadius: '50px',
+                          marginBottom: '8px'
+                        }}>
+                          {benefit.highlight}
+                        </div>
+                        <h3 style={{
+                          fontSize: 'clamp(14px, 2vw, 18px)',
+                          fontWeight: '700',
+                          color: '#fff',
+                          lineHeight: '1.3'
+                        }}>
+                          {benefit.title}
+                        </h3>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
-              </AnimatePresence>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -286,7 +358,6 @@ export default function RecruitingSection() {
         width: '100%',
         overflow: 'hidden',
         background: '#000',
-        color: '#fff',
         padding: 'clamp(60px, 10vw, 120px) 0'
       }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
@@ -295,7 +366,8 @@ export default function RecruitingSection() {
             fontWeight: '800',
             textAlign: 'center',
             marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#fff'
           }}>
             업계 최고 수준의 <span style={{ color: '#10b981' }}>신입 지원 시스템</span>
           </h2>
@@ -303,8 +375,7 @@ export default function RecruitingSection() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 'clamp(20px, 3vw, 24px)',
-            marginTop: 'clamp(40px, 6vw, 60px)'
+            gap: 'clamp(20px, 3vw, 24px)'
           }}>
             {BENEFITS.map((benefit, idx) => {
               const Icon = benefit.icon;
@@ -390,7 +461,6 @@ export default function RecruitingSection() {
         width: '100%',
         overflow: 'hidden',
         background: '#000',
-        color: '#fff',
         padding: 'clamp(60px, 10vw, 120px) 0'
       }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
@@ -399,7 +469,8 @@ export default function RecruitingSection() {
             fontWeight: '800',
             textAlign: 'center',
             marginBottom: '16px',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#fff'
           }}>
             시작하기, 정말 간단합니다
           </h2>
@@ -412,129 +483,142 @@ export default function RecruitingSection() {
             부담 없이 상담부터 시작하세요
           </p>
 
-          {/* Process Carousel */}
-          <div style={{ position: 'relative', marginTop: 'clamp(40px, 6vw, 60px)' }}>
-            <div style={{
-              display: 'flex',
-              gap: '16px',
-              overflowX: 'auto',
-              paddingBottom: '20px',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none'
-            }} className="hide-scrollbar">
-              {PROCESS_STEPS.map((step, idx) => {
-                const dist = idx - activeProcess;
-                const offset = Math.max(-1, Math.min(1, dist)) * 18;
-                return (
-                  <motion.button
-                    key={step.step}
-                    onClick={() => setActiveProcess(idx)}
-                    style={{
-                      position: 'relative',
-                      height: '72vh',
-                      minWidth: '180px',
-                      flex: 1,
-                      borderRadius: '24px',
-                      overflow: 'hidden',
-                      border: idx === activeProcess ? '1px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)',
-                      opacity: idx === activeProcess ? 1 : 0.9,
-                      cursor: 'pointer',
-                      backgroundImage: `url(${step.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                    animate={{ x: offset }}
-                    transition={{ duration: 0.9, ease: easeBezier }}
-                    onMouseEnter={(e) => {
-                      if (idx !== activeProcess) e.currentTarget.style.opacity = '1';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (idx !== activeProcess) e.currentTarget.style.opacity = '0.9';
-                    }}
-                  >
-                    <div style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
-                      pointerEvents: 'none'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      width: '1px',
-                      background: 'rgba(255,255,255,0.1)',
-                      pointerEvents: 'none'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      right: 0,
-                      width: '1px',
-                      background: 'rgba(255,255,255,0.1)',
-                      pointerEvents: 'none'
-                    }} />
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* Content Panel */}
-            <div style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: '600px',
-              zIndex: 10,
-              pointerEvents: 'none'
-            }}>
-              <AnimatePresence mode="wait">
+          {/* Process Strips */}
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            alignItems: 'flex-start',
+            minHeight: '600px'
+          }}>
+            {PROCESS_STEPS.map((step, idx) => {
+              const isExpanded = activeProcess === idx;
+              return (
                 <motion.div
-                  key={processPanelKey}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12, scale: 0.97 }}
-                  transition={{ duration: 1.1, ease: easeBezier }}
-                  style={{
-                    pointerEvents: 'auto',
-                    borderRadius: '28px',
-                    background: '#fff',
-                    padding: 'clamp(24px, 4vw, 32px)',
-                    color: '#000',
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.5)'
+                  key={step.step}
+                  initial={false}
+                  animate={{
+                    flex: isExpanded ? 3 : 1,
+                    minWidth: isExpanded ? '400px' : '180px'
                   }}
+                  transition={{ duration: 0.8, ease: easeBezier }}
+                  style={{
+                    position: 'relative',
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    backgroundImage: `url(${step.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    border: isExpanded ? '2px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)'
+                  }}
+                  onClick={() => setActiveProcess(isExpanded ? null : idx)}
                 >
                   <div style={{
-                    fontSize: 'clamp(10px, 1.2vw, 12px)',
-                    fontWeight: '600',
-                    letterSpacing: '0.14em',
-                    color: '#3b82f6',
-                    marginBottom: '8px'
-                  }}>
-                    STEP {PROCESS_STEPS[activeProcess].step}
-                  </div>
-                  <h3 style={{
-                    fontSize: 'clamp(20px, 3vw, 32px)',
-                    fontWeight: '800',
-                    lineHeight: '1.2',
-                    marginBottom: '12px'
-                  }}>
-                    {PROCESS_STEPS[activeProcess].title}
-                  </h3>
-                  <p style={{
-                    fontSize: 'clamp(14px, 2vw, 18px)',
-                    color: '#4b5563',
-                    lineHeight: '1.6'
-                  }}>
-                    {PROCESS_STEPS[activeProcess].desc}
-                  </p>
+                    position: 'absolute',
+                    inset: 0,
+                    background: isExpanded 
+                      ? 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))'
+                      : 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
+                    transition: 'background 0.3s'
+                  }} />
+                  
+                  <AnimatePresence>
+                    {isExpanded ? (
+                      <motion.div
+                        key="expanded"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                        style={{
+                          position: 'relative',
+                          zIndex: 10,
+                          padding: 'clamp(32px, 5vw, 48px)',
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        <div>
+                          <div style={{
+                            fontSize: 'clamp(12px, 1.5vw, 14px)',
+                            fontWeight: '600',
+                            letterSpacing: '0.14em',
+                            color: '#3b82f6',
+                            marginBottom: '16px'
+                          }}>
+                            STEP {step.step}
+                          </div>
+                          
+                          <h3 style={{
+                            fontSize: 'clamp(24px, 3.5vw, 36px)',
+                            fontWeight: '800',
+                            color: '#fff',
+                            marginBottom: '16px',
+                            lineHeight: '1.2'
+                          }}>
+                            {step.title}
+                          </h3>
+                          
+                          <p style={{
+                            color: 'rgba(255,255,255,0.9)',
+                            fontSize: 'clamp(16px, 2.2vw, 20px)',
+                            marginBottom: '32px',
+                            lineHeight: '1.6'
+                          }}>
+                            {step.desc}
+                          </p>
+
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                            {step.details.map((detail, i) => (
+                              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                                <Check style={{ width: '20px', height: '20px', color: '#10b981', flexShrink: 0, marginTop: '2px' }} />
+                                <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(14px, 1.8vw, 18px)', lineHeight: '1.6' }}>
+                                  {detail}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="collapsed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                          position: 'absolute',
+                          bottom: '24px',
+                          left: '24px',
+                          right: '24px',
+                          zIndex: 10
+                        }}
+                      >
+                        <div style={{
+                          fontSize: 'clamp(10px, 1.2vw, 12px)',
+                          fontWeight: '600',
+                          letterSpacing: '0.14em',
+                          color: '#3b82f6',
+                          marginBottom: '8px'
+                        }}>
+                          STEP {step.step}
+                        </div>
+                        <h3 style={{
+                          fontSize: 'clamp(14px, 2vw, 18px)',
+                          fontWeight: '700',
+                          color: '#fff',
+                          lineHeight: '1.3'
+                        }}>
+                          {step.title}
+                        </h3>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
-              </AnimatePresence>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -545,7 +629,6 @@ export default function RecruitingSection() {
         width: '100%',
         overflow: 'hidden',
         background: '#000',
-        color: '#fff',
         padding: 'clamp(60px, 10vw, 120px) 0'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
@@ -554,7 +637,8 @@ export default function RecruitingSection() {
             fontWeight: '800',
             textAlign: 'center',
             marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#fff'
           }}>
             지점장 소개
           </h2>
@@ -588,7 +672,8 @@ export default function RecruitingSection() {
               <h3 style={{
                 fontSize: 'clamp(28px, 4vw, 40px)',
                 fontWeight: '800',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                color: '#fff'
               }}>
                 강성현 지점장
               </h3>
@@ -660,7 +745,6 @@ export default function RecruitingSection() {
         width: '100%',
         overflow: 'hidden',
         background: '#000',
-        color: '#fff',
         padding: 'clamp(60px, 10vw, 120px) 0'
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
@@ -669,7 +753,8 @@ export default function RecruitingSection() {
             fontWeight: '800',
             textAlign: 'center',
             marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#fff'
           }}>
             상담 신청
           </h2>
@@ -841,12 +926,6 @@ export default function RecruitingSection() {
           </form>
         </div>
       </section>
-
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }
