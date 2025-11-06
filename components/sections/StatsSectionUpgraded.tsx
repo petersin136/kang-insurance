@@ -4,10 +4,10 @@ import { motion, useMotionValue, useTransform, animate, useInView } from 'framer
 import { useRef, useEffect } from 'react';
 
 const stats = [
-  { number: 10000, label: '상담 고객', suffix: '+' },
-  { number: 25, label: '경력 (년)', suffix: '년' },
+  { number: 500, label: '상담 고객', suffix: '+' },
+  { number: 5, label: '경력 (년)', suffix: '년+' },
   { number: 98, label: '고객 만족도', suffix: '%' },
-  { number: 500, label: '보험금 청구 성공', suffix: '+' }
+  { number: 200, label: '보험금 청구 성공', suffix: '+' }
 ];
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
