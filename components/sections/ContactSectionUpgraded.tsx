@@ -87,7 +87,7 @@ export default function ContactSectionUpgraded() {
       ref={ref} 
       style={{ 
         padding: '120px 0', 
-        background: 'linear-gradient(180deg, #1a1a1a 0%, #2b2825 100%)',
+        background: 'linear-gradient(180deg, #faf8f3 0%, #f5f1ea 100%)',
         width: '100%', 
         overflow: 'hidden' 
       }} 
@@ -103,7 +103,7 @@ export default function ContactSectionUpgraded() {
           <h2 style={{ 
             fontSize: 'clamp(32px, 5vw, 56px)', 
             fontWeight: '700', 
-            color: '#ffffff', 
+            color: '#2b2825', 
             marginBottom: '20px',
             letterSpacing: '-1px',
             lineHeight: '1.2'
@@ -112,7 +112,7 @@ export default function ContactSectionUpgraded() {
           </h2>
           <p style={{ 
             fontSize: 'clamp(16px, 2.5vw, 20px)', 
-            color: '#c5c5c5',
+            color: '#5a534e',
             lineHeight: '1.6'
           }}>
             {content.subtitle}
@@ -131,7 +131,7 @@ export default function ContactSectionUpgraded() {
               <h3 style={{ 
                 fontSize: '28px', 
                 fontWeight: '700', 
-                color: '#ffffff', 
+                color: '#2b2825', 
                 marginBottom: '32px',
                 letterSpacing: '-0.5px'
               }}>
@@ -142,19 +142,19 @@ export default function ContactSectionUpgraded() {
                   <div style={{ 
                     width: '56px', 
                     height: '56px', 
-                    background: 'rgba(255, 255, 255, 0.1)', 
+                    background: '#e8e3d9', 
                     borderRadius: '50%', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
                     flexShrink: 0
                   }}>
-                    <Phone style={{ width: '24px', height: '24px', color: '#ffffff' }} />
+                    <Phone style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#ffffff', fontSize: '16px', marginBottom: '6px' }}>전화</div>
-                    <div style={{ color: '#c5c5c5', fontSize: '15px', lineHeight: '1.6' }}>T. 033-763-9785</div>
-                    <div style={{ color: '#c5c5c5', fontSize: '15px', lineHeight: '1.6' }}>M. 010-4111-5552</div>
+                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>전화</div>
+                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>T. 033-763-9785</div>
+                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>M. 010-4111-5552</div>
                   </div>
                 </div>
 
@@ -162,18 +162,18 @@ export default function ContactSectionUpgraded() {
                   <div style={{ 
                     width: '56px', 
                     height: '56px', 
-                    background: 'rgba(255, 255, 255, 0.1)', 
+                    background: '#e8e3d9', 
                     borderRadius: '50%', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
                     flexShrink: 0
                   }}>
-                    <Mail style={{ width: '24px', height: '24px', color: '#ffffff' }} />
+                    <Mail style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#ffffff', fontSize: '16px', marginBottom: '6px' }}>이메일</div>
-                    <div style={{ color: '#c5c5c5', fontSize: '15px', lineHeight: '1.6' }}>kangsh6917@naver.com</div>
+                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>이메일</div>
+                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>kangsh6917@naver.com</div>
                   </div>
                 </div>
 
@@ -181,18 +181,18 @@ export default function ContactSectionUpgraded() {
                   <div style={{ 
                     width: '56px', 
                     height: '56px', 
-                    background: 'rgba(255, 255, 255, 0.1)', 
+                    background: '#e8e3d9', 
                     borderRadius: '50%', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
                     flexShrink: 0
                   }}>
-                    <MapPin style={{ width: '24px', height: '24px', color: '#ffffff' }} />
+                    <MapPin style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#ffffff', fontSize: '16px', marginBottom: '6px' }}>주소</div>
-                    <div style={{ color: '#c5c5c5', fontSize: '15px', lineHeight: '1.6' }}>강원특별자치도 원주시 능라동길65, 803호<br />(유포타워 8층)</div>
+                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>주소</div>
+                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>강원특별자치도 원주시 능라동길65, 803호<br />(유포타워 8층)</div>
                   </div>
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function ContactSectionUpgraded() {
                 display: 'block', 
                 fontSize: '15px', 
                 fontWeight: '600', 
-                color: '#ffffff', 
+                color: '#2b2825', 
                 marginBottom: '10px',
                 letterSpacing: '0.3px'
               }}>
@@ -226,22 +226,22 @@ export default function ContactSectionUpgraded() {
                 style={{
                   width: '100%',
                   padding: '16px 18px',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  background: '#ffffff',
+                  border: '1px solid #d4c5b0',
                   borderRadius: '12px',
                   fontSize: '15px',
-                  color: '#ffffff',
+                  color: '#111827',
                   outline: 'none',
                   transition: 'all 0.3s ease'
                 }}
                 placeholder="홍길동"
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#ffffff';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.target.style.borderColor = '#a68a64';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.borderColor = '#d4c5b0';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
@@ -251,7 +251,7 @@ export default function ContactSectionUpgraded() {
                 display: 'block', 
                 fontSize: '15px', 
                 fontWeight: '600', 
-                color: '#ffffff', 
+                color: '#2b2825', 
                 marginBottom: '10px',
                 letterSpacing: '0.3px'
               }}>
@@ -265,22 +265,22 @@ export default function ContactSectionUpgraded() {
                 style={{
                   width: '100%',
                   padding: '16px 18px',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  background: '#ffffff',
+                  border: '1px solid #d4c5b0',
                   borderRadius: '12px',
                   fontSize: '15px',
-                  color: '#ffffff',
+                  color: '#111827',
                   outline: 'none',
                   transition: 'all 0.3s ease'
                 }}
                 placeholder="010-1234-5678"
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#ffffff';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.target.style.borderColor = '#a68a64';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.borderColor = '#d4c5b0';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
@@ -290,7 +290,7 @@ export default function ContactSectionUpgraded() {
                 display: 'block', 
                 fontSize: '15px', 
                 fontWeight: '600', 
-                color: '#ffffff', 
+                color: '#2b2825', 
                 marginBottom: '10px',
                 letterSpacing: '0.3px'
               }}>
@@ -303,22 +303,22 @@ export default function ContactSectionUpgraded() {
                 style={{
                   width: '100%',
                   padding: '16px 18px',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  background: '#ffffff',
+                  border: '1px solid #d4c5b0',
                   borderRadius: '12px',
                   fontSize: '15px',
-                  color: '#ffffff',
+                  color: '#111827',
                   outline: 'none',
                   transition: 'all 0.3s ease'
                 }}
                 placeholder="hong@example.com"
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#ffffff';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.target.style.borderColor = '#a68a64';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.borderColor = '#d4c5b0';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
@@ -328,7 +328,7 @@ export default function ContactSectionUpgraded() {
                 display: 'block', 
                 fontSize: '15px', 
                 fontWeight: '600', 
-                color: '#ffffff', 
+                color: '#2b2825', 
                 marginBottom: '10px',
                 letterSpacing: '0.3px'
               }}>
@@ -341,32 +341,33 @@ export default function ContactSectionUpgraded() {
                 style={{
                   width: '100%',
                   padding: '16px 18px',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  background: '#ffffff',
+                  border: '1px solid #d4c5b0',
                   borderRadius: '12px',
                   fontSize: '15px',
-                  color: '#ffffff',
+                  color: '#111827',
                   outline: 'none',
                   resize: 'none',
                   lineHeight: '1.6',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  fontFamily: 'inherit'
                 }}
                 placeholder="상담받고 싶은 보험 종류나 문의사항을 작성해주세요"
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#ffffff';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.target.style.borderColor = '#a68a64';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.borderColor = '#d4c5b0';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
 
             {/* 개인정보 동의 */}
             <div style={{ 
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              background: '#f5f1ea',
+              border: '1px solid #d4c5b0',
               borderRadius: '12px',
               padding: '20px',
               marginTop: '8px'
@@ -391,7 +392,7 @@ export default function ContactSectionUpgraded() {
                 />
                 <span style={{ 
                   fontSize: '14px', 
-                  color: '#ffffff', 
+                  color: '#2b2825', 
                   lineHeight: '1.6',
                   flex: 1
                 }}>
@@ -419,21 +420,21 @@ export default function ContactSectionUpgraded() {
                 <div style={{
                   marginTop: '16px',
                   padding: '20px',
-                  background: 'rgba(255, 255, 255, 0.05)',
+                  background: '#ffffff',
                   borderRadius: '8px',
                   fontSize: '13px',
-                  color: '#c5c5c5',
+                  color: '#5a534e',
                   lineHeight: '1.9',
                   maxHeight: '400px',
                   overflowY: 'auto',
-                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                  border: '1px solid #d4c5b0'
                 }}>
-                  <p style={{ marginBottom: '16px', fontWeight: '700', color: '#ffffff', fontSize: '15px', borderBottom: '1px solid rgba(255, 255, 255, 0.2)', paddingBottom: '12px' }}>
+                  <p style={{ marginBottom: '16px', fontWeight: '700', color: '#2b2825', fontSize: '15px', borderBottom: '1px solid #d4c5b0', paddingBottom: '12px' }}>
                     개인정보 수집 및 이용에 대한 안내
                   </p>
                   
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>1. 개인정보의 수집 및 이용 목적</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>1. 개인정보의 수집 및 이용 목적</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험 상담 및 컨설팅 서비스 제공</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험 상품 안내 및 가입 권유</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 고객 문의사항 처리 및 민원 해결</p>
@@ -442,7 +443,7 @@ export default function ContactSectionUpgraded() {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>2. 수집하는 개인정보 항목</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>2. 수집하는 개인정보 항목</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>필수항목:</strong> 성명, 휴대전화번호, 이메일 주소, 상담 내용</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>자동수집:</strong> IP 주소, 쿠키, 접속 로그, 방문 일시</p>
                     <p style={{ paddingLeft: '12px', fontSize: '12px', color: '#999' }}>
@@ -451,14 +452,14 @@ export default function ContactSectionUpgraded() {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>3. 개인정보의 보유 및 이용기간</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>3. 개인정보의 보유 및 이용기간</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 상담 신청 시로부터 <strong>3년</strong> (금융 관련 법령에 따른 최소 보존기간)</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 보험계약 체결 시: 계약 종료 후 5년 (상법, 전자금융거래법)</p>
                     <p style={{ paddingLeft: '12px' }}>• 동의 철회 요청 시 지체없이 파기 (단, 법령에 따라 보존이 필요한 경우 예외)</p>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>4. 개인정보의 제3자 제공</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>4. 개인정보의 제3자 제공</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 원칙적으로 고객의 개인정보를 제3자에게 제공하지 않습니다.</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 다만, 보험계약 체결을 위해 <strong>보험회사</strong>에 필요 최소한의 정보를 제공할 수 있으며, 이 경우 사전에 별도 동의를 받습니다.</p>
                     <p style={{ paddingLeft: '12px', fontSize: '12px', color: '#999' }}>
@@ -467,13 +468,13 @@ export default function ContactSectionUpgraded() {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>5. 개인정보 처리위탁</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>5. 개인정보 처리위탁</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 업무 효율화를 위해 개인정보 처리업무를 외부에 위탁할 수 있습니다.</p>
                     <p style={{ paddingLeft: '12px' }}>• 위탁 시 개인정보보호 관련 법규 준수를 위해 위탁계약서 등을 통해 엄격히 관리합니다.</p>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>6. 정보주체의 권리·의무 및 행사방법</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>6. 정보주체의 권리·의무 및 행사방법</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>귀하는 개인정보 주체로서 다음과 같은 권리를 행사할 수 있습니다:</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 열람, 정정, 삭제 요구</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 처리정지 요구</p>
@@ -484,27 +485,27 @@ export default function ContactSectionUpgraded() {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>7. 개인정보의 파기 절차 및 방법</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>7. 개인정보의 파기 절차 및 방법</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>파기절차:</strong> 보유기간 경과 시 내부 방침에 따라 지체없이 파기</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• <strong>파기방법:</strong> 전자적 파일은 복구 불가능하도록 영구 삭제, 종이 문서는 분쇄 또는 소각</p>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>8. 개인정보 보호책임자</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>8. 개인정보 보호책임자</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 성명: 강성현</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 연락처: 010-4111-5552</p>
                     <p style={{ paddingLeft: '12px' }}>• 이메일: kangsh6917@naver.com</p>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>9. 개인정보의 안전성 확보조치</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>9. 개인정보의 안전성 확보조치</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 개인정보 암호화 및 접근권한 관리</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 해킹 등에 대비한 기술적 대책</p>
                     <p style={{ paddingLeft: '12px' }}>• 개인정보 취급 직원의 최소화 및 교육</p>
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#ffffff' }}>10. 동의 거부권 및 불이익</p>
+                    <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>10. 동의 거부권 및 불이익</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 귀하는 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.</p>
                     <p style={{ paddingLeft: '12px' }}>• 다만, 필수항목 동의를 거부하실 경우 보험 상담 및 계약 체결이 제한될 수 있습니다.</p>
                   </div>
@@ -512,9 +513,9 @@ export default function ContactSectionUpgraded() {
                   <div style={{ 
                     marginTop: '20px', 
                     paddingTop: '16px', 
-                    borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderTop: '1px solid #d4c5b0',
                     fontSize: '12px',
-                    color: '#999'
+                    color: '#6b7280'
                   }}>
                     <p style={{ marginBottom: '4px' }}>본 동의는 상담 신청일로부터 효력이 발생하며, 동의 이후에라도 언제든지 철회 가능합니다.</p>
                     <p>개인정보보호법, 신용정보의 이용 및 보호에 관한 법률, 금융실명거래 및 비밀보장에 관한 법률 등 관련 법령에 따라 처리됩니다.</p>
@@ -559,7 +560,7 @@ export default function ContactSectionUpgraded() {
 
             <p style={{ 
               fontSize: '14px', 
-              color: '#c5c5c5', 
+              color: '#5a534e', 
               textAlign: 'center',
               lineHeight: '1.5',
               marginTop: '12px'
@@ -578,10 +579,10 @@ export default function ContactSectionUpgraded() {
               alignItems: 'center',
               gap: '8px',
               padding: '12px 24px',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
+              background: '#e8e3d9',
+              border: '1px solid #d4c5b0',
               borderRadius: '8px',
-              color: '#ffffff',
+              color: '#2b2825',
               fontSize: '14px',
               fontWeight: '500',
               textDecoration: 'none',
@@ -589,12 +590,12 @@ export default function ContactSectionUpgraded() {
               cursor: 'pointer'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+              e.currentTarget.style.background = '#d4c5b0';
+              e.currentTarget.style.borderColor = '#a68a64';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              e.currentTarget.style.background = '#e8e3d9';
+              e.currentTarget.style.borderColor = '#d4c5b0';
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
