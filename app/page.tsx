@@ -7,6 +7,7 @@ import ProcessSectionUpgraded from '@/components/sections/ProcessSectionUpgraded
 import TestimonialsSectionUpgraded from '@/components/sections/TestimonialsSectionUpgraded';
 import StatsSectionUpgraded from '@/components/sections/StatsSectionUpgraded';
 import ContactSectionUpgraded from '@/components/sections/ContactSectionUpgraded';
+import RecruitingSection from '@/components/sections/RecruitingSection';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <div id="services"><ServicesSectionUpgraded /></div>
         <div id="stats"><StatsSectionUpgraded /></div>
         <div id="contact"><ContactSectionUpgraded /></div>
+        <RecruitingSection />
       </main>
       <Footer />
     </div>
