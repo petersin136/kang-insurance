@@ -119,103 +119,109 @@ export default function ContactSectionUpgraded() {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '60px', maxWidth: '1000px', margin: '0 auto' }} className="lg:grid-cols-2">
-          {/* 연락처 정보 */}
+        <form onSubmit={handleSubmit} style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          {/* 상단: 연락처 정보 (왼쪽) + 이름/연락처/이메일 (오른쪽) */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr', 
+            gap: '60px', 
+            marginBottom: '40px'
+          }} className="lg:grid-cols-2">
+            {/* 연락처 정보 - 왼쪽 */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}
           >
             <div>
-              <h3 style={{ 
-                fontSize: '28px', 
-                fontWeight: '700', 
-                color: '#2b2825', 
-                marginBottom: '32px',
-                letterSpacing: '-0.5px'
-              }}>
+                <h3 style={{ 
+                  fontSize: '28px', 
+                  fontWeight: '700', 
+                  color: '#2b2825', 
+                  marginBottom: '32px',
+                  letterSpacing: '-0.5px'
+                }}>
                 연락처 정보
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                  <div style={{ 
-                    width: '56px', 
-                    height: '56px', 
-                    background: '#e8e3d9', 
-                    borderRadius: '50%', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <Phone style={{ width: '24px', height: '24px', color: '#2b2825' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
+                    <div style={{ 
+                      width: '56px', 
+                      height: '56px', 
+                      background: '#e8e3d9', 
+                      borderRadius: '50%', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <Phone style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>전화</div>
-                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>T. 033-763-9785</div>
-                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>M. 010-4111-5552</div>
+                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>전화</div>
+                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>T. 033-763-9785</div>
+                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>M. 010-4111-5552</div>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                  <div style={{ 
-                    width: '56px', 
-                    height: '56px', 
-                    background: '#e8e3d9', 
-                    borderRadius: '50%', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <Mail style={{ width: '24px', height: '24px', color: '#2b2825' }} />
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
+                    <div style={{ 
+                      width: '56px', 
+                      height: '56px', 
+                      background: '#e8e3d9', 
+                      borderRadius: '50%', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <Mail style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>이메일</div>
-                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>kangsh6917@naver.com</div>
+                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>이메일</div>
+                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>kangsh6917@naver.com</div>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                  <div style={{ 
-                    width: '56px', 
-                    height: '56px', 
-                    background: '#e8e3d9', 
-                    borderRadius: '50%', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <MapPin style={{ width: '24px', height: '24px', color: '#2b2825' }} />
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
+                    <div style={{ 
+                      width: '56px', 
+                      height: '56px', 
+                      background: '#e8e3d9', 
+                      borderRadius: '50%', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <MapPin style={{ width: '24px', height: '24px', color: '#2b2825' }} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>주소</div>
-                    <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>강원특별자치도 원주시 능라동길65, 803호<br />(유포타워 8층)</div>
+                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>주소</div>
+                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>강원특별자치도 원주시 능라동길65, 803호<br />(유포타워 8층)</div>
+                    </div>
                   </div>
                 </div>
-              </div>
             </div>
           </motion.div>
 
-          {/* 상담 신청 폼 */}
-          <motion.form
+            {/* 이름, 연락처, 이메일 입력 - 오른쪽 */}
+            <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            onSubmit={handleSubmit}
-            style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
           >
             <div>
-              <label style={{ 
-                display: 'block', 
-                fontSize: '15px', 
-                fontWeight: '600', 
-                color: '#2b2825', 
-                marginBottom: '10px',
-                letterSpacing: '0.3px'
-              }}>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '15px', 
+                  fontWeight: '600', 
+                  color: '#2b2825', 
+                  marginBottom: '10px',
+                  letterSpacing: '0.3px'
+                }}>
                 이름 *
               </label>
               <input
@@ -223,38 +229,38 @@ export default function ContactSectionUpgraded() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                style={{
-                  width: '100%',
-                  padding: '16px 18px',
-                  background: '#ffffff',
-                  border: '1px solid #d4c5b0',
-                  borderRadius: '12px',
-                  fontSize: '15px',
-                  color: '#111827',
-                  outline: 'none',
-                  transition: 'all 0.3s ease'
-                }}
+                  style={{
+                    width: '100%',
+                    padding: '16px 18px',
+                    background: '#ffffff',
+                    border: '1px solid #d4c5b0',
+                    borderRadius: '12px',
+                    fontSize: '15px',
+                    color: '#111827',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
                 placeholder="홍길동"
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#a68a64';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#d4c5b0';
-                  e.target.style.boxShadow = 'none';
-                }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#a68a64';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#d4c5b0';
+                    e.target.style.boxShadow = 'none';
+                  }}
               />
             </div>
 
             <div>
-              <label style={{ 
-                display: 'block', 
-                fontSize: '15px', 
-                fontWeight: '600', 
-                color: '#2b2825', 
-                marginBottom: '10px',
-                letterSpacing: '0.3px'
-              }}>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '15px', 
+                  fontWeight: '600', 
+                  color: '#2b2825', 
+                  marginBottom: '10px',
+                  letterSpacing: '0.3px'
+                }}>
                 연락처 *
               </label>
               <input
@@ -262,116 +268,129 @@ export default function ContactSectionUpgraded() {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                style={{
-                  width: '100%',
-                  padding: '16px 18px',
-                  background: '#ffffff',
-                  border: '1px solid #d4c5b0',
-                  borderRadius: '12px',
-                  fontSize: '15px',
-                  color: '#111827',
-                  outline: 'none',
-                  transition: 'all 0.3s ease'
-                }}
+                  style={{
+                    width: '100%',
+                    padding: '16px 18px',
+                    background: '#ffffff',
+                    border: '1px solid #d4c5b0',
+                    borderRadius: '12px',
+                    fontSize: '15px',
+                    color: '#111827',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
                 placeholder="010-1234-5678"
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#a68a64';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#d4c5b0';
-                  e.target.style.boxShadow = 'none';
-                }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#a68a64';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#d4c5b0';
+                    e.target.style.boxShadow = 'none';
+                  }}
               />
             </div>
 
             <div>
-              <label style={{ 
-                display: 'block', 
-                fontSize: '15px', 
-                fontWeight: '600', 
-                color: '#2b2825', 
-                marginBottom: '10px',
-                letterSpacing: '0.3px'
-              }}>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '15px', 
+                  fontWeight: '600', 
+                  color: '#2b2825', 
+                  marginBottom: '10px',
+                  letterSpacing: '0.3px'
+                }}>
                 이메일
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                style={{
-                  width: '100%',
-                  padding: '16px 18px',
-                  background: '#ffffff',
-                  border: '1px solid #d4c5b0',
-                  borderRadius: '12px',
-                  fontSize: '15px',
-                  color: '#111827',
-                  outline: 'none',
-                  transition: 'all 0.3s ease'
-                }}
+                  style={{
+                    width: '100%',
+                    padding: '16px 18px',
+                    background: '#ffffff',
+                    border: '1px solid #d4c5b0',
+                    borderRadius: '12px',
+                    fontSize: '15px',
+                    color: '#111827',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
                 placeholder="hong@example.com"
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#a68a64';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#d4c5b0';
-                  e.target.style.boxShadow = 'none';
-                }}
-              />
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#a68a64';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#d4c5b0';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+              </div>
+            </motion.div>
             </div>
 
-            <div>
-              <label style={{ 
-                display: 'block', 
-                fontSize: '15px', 
-                fontWeight: '600', 
-                color: '#2b2825', 
-                marginBottom: '10px',
-                letterSpacing: '0.3px'
-              }}>
+          {/* 하단: 상담 내용 (전체 너비) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            style={{ marginBottom: '24px' }}
+          >
+            <label style={{ 
+              display: 'block', 
+              fontSize: '15px', 
+              fontWeight: '600', 
+              color: '#2b2825', 
+              marginBottom: '10px',
+              letterSpacing: '0.3px'
+            }}>
                 상담 내용
               </label>
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                rows={6}
-                style={{
-                  width: '100%',
-                  padding: '16px 18px',
-                  background: '#ffffff',
-                  border: '1px solid #d4c5b0',
-                  borderRadius: '12px',
-                  fontSize: '15px',
-                  color: '#111827',
-                  outline: 'none',
-                  resize: 'none',
-                  lineHeight: '1.6',
-                  transition: 'all 0.3s ease',
-                  fontFamily: 'inherit'
-                }}
+              rows={6}
+              style={{
+                width: '100%',
+                padding: '16px 18px',
+                background: '#ffffff',
+                border: '1px solid #d4c5b0',
+                borderRadius: '12px',
+                fontSize: '15px',
+                color: '#111827',
+                outline: 'none',
+                resize: 'none',
+                lineHeight: '1.6',
+                transition: 'all 0.3s ease',
+                fontFamily: 'inherit'
+              }}
                 placeholder="상담받고 싶은 보험 종류나 문의사항을 작성해주세요"
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#a68a64';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#d4c5b0';
-                  e.target.style.boxShadow = 'none';
-                }}
-              />
-            </div>
+              onFocus={(e) => {
+                e.target.style.borderColor = '#a68a64';
+                e.target.style.boxShadow = '0 0 0 3px rgba(166, 138, 100, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = '#d4c5b0';
+                e.target.style.boxShadow = 'none';
+              }}
+            />
+          </motion.div>
 
-            {/* 개인정보 동의 */}
-            <div style={{ 
+          {/* 개인정보 동의 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            style={{ 
               background: '#f5f1ea',
               border: '1px solid #d4c5b0',
               borderRadius: '12px',
               padding: '20px',
-              marginTop: '8px'
-            }}>
+              marginBottom: '24px'
+            }}
+          >
               <label style={{ 
                 display: 'flex', 
                 alignItems: 'flex-start', 
@@ -508,7 +527,7 @@ export default function ContactSectionUpgraded() {
                     <p style={{ marginBottom: '8px', fontWeight: '600', color: '#2b2825' }}>10. 동의 거부권 및 불이익</p>
                     <p style={{ marginBottom: '4px', paddingLeft: '12px' }}>• 귀하는 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다.</p>
                     <p style={{ paddingLeft: '12px' }}>• 다만, 필수항목 동의를 거부하실 경우 보험 상담 및 계약 체결이 제한될 수 있습니다.</p>
-                  </div>
+            </div>
 
                   <div style={{ 
                     marginTop: '20px', 
@@ -522,8 +541,13 @@ export default function ContactSectionUpgraded() {
                   </div>
                 </div>
               )}
-            </div>
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             <button
               type="submit"
               style={{
@@ -541,7 +565,7 @@ export default function ContactSectionUpgraded() {
                 justifyContent: 'center',
                 gap: '10px',
                 transition: 'all 0.3s ease',
-                marginTop: '16px'
+                marginBottom: '12px'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#8b7355';
@@ -562,13 +586,12 @@ export default function ContactSectionUpgraded() {
               fontSize: '14px', 
               color: '#5a534e', 
               textAlign: 'center',
-              lineHeight: '1.5',
-              marginTop: '12px'
+              lineHeight: '1.5'
             }}>
               * 표시는 필수 입력 항목입니다
             </p>
-          </motion.form>
-        </div>
+          </motion.div>
+        </form>
 
         {/* 모바일 전용 관리자 페이지 버튼 */}
         <div className="block md:hidden" style={{ marginTop: '40px', textAlign: 'center' }}>
