@@ -190,7 +190,11 @@ export default function ProcessSectionUpgraded() {
                   color: '#111827',
                   textAlign: 'center',
                   lineHeight: '1.3',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  position: 'relative',
+                  zIndex: 10,
+                  background: 'linear-gradient(to bottom, #ffffff, #f9fafb)',
+                  padding: '0 4px'
                 }}>
                   {step.title}
                 </h3>
