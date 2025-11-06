@@ -52,10 +52,10 @@ export default function HeroSectionUpgraded() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#faf8f3]" style={{ width: '100%', maxWidth: '100vw' }}>
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#faf8f3]" style={{ width: '100%', maxWidth: '100vw', paddingTop: 'clamp(3rem, 8vw, 4rem)' }}>
       {/* 배너 이미지 - 최상단 (원본 비율 유지) */}
       <motion.div 
-        style={{ opacity: opacity, paddingTop: 'clamp(3rem, 8vw, 4rem)' }}
+        style={{ opacity: opacity }}
         className="relative w-full overflow-hidden bg-gray-900"
       >
         {/* 모바일 전용 이미지 */}

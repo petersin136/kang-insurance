@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Heart,
   TrendingUp,
@@ -16,7 +16,7 @@ import {
   Handshake
 } from 'lucide-react';
 
-const easeBezier = [0.25, 1, 0.5, 1] as const;
+const easeBezier = [0.4, 0, 0.2, 1] as const; // 더 부드러운 Material Design easing
 
 type BenefitItem = {
   id: string;
@@ -92,75 +92,161 @@ const BENEFITS: BenefitItem[] = [
   }
 ];
 
-const PROCESS_STEPS = [
-  {
-    step: '01',
-    title: '간단한 상담',
-    desc: '전화 또는 카톡으로 편하게 문의하세요',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop',
-    details: [
-      '전화 또는 카카오톡으로 간편하게 문의',
-      '부담 없는 상담 진행',
-      '24시간 내 답변 보장',
-      '궁금한 점 자유롭게 질문'
-    ]
-  },
-  {
-    step: '02',
-    title: '1:1 미팅',
-    desc: '강성현 지점장과 커피 한잔 나누며 이야기해요',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop',
-    details: [
-      '강성현 지점장과 직접 만남',
-      '편안한 분위기에서 대화',
-      '조직 문화와 비전 공유',
-      '서로를 알아가는 시간'
-    ]
-  },
-  {
-    step: '03',
-    title: '교육 시작',
-    desc: '기초부터 탄탄하게 영업의 A to Z를 배웁니다',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop',
-    details: [
-      '체계적인 교육 커리큘럼',
-      '1:1 멘토링 시작',
-      '실전 영업 기법 학습',
-      '지속적인 피드백과 개선'
-    ]
-  },
-  {
-    step: '04',
-    title: '함께 성장',
-    desc: '평생 함께할 동료이자 가족으로 성장합니다',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop',
-    details: [
-      '팀원으로서의 정식 합류',
-      '지속적인 성장 지원',
-      '평생 함께할 동료와의 만남',
-      '함께 만들어가는 미래'
-    ]
-  }
-];
-
 export default function RecruitingSection() {
   const [activeBenefit, setActiveBenefit] = useState<number | null>(null);
-  const [activeProcess, setActiveProcess] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    gender: '',
+    birthDate: '',
     email: '',
     message: ''
   });
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     alert('상담 신청이 접수되었습니다! 곧 연락드리겠습니다.');
-    setFormData({ name: '', phone: '', email: '', message: '' });
+    setFormData({ name: '', phone: '', gender: '', birthDate: '', email: '', message: '' });
   };
 
   return (
     <div style={{ width: '100%', background: '#000', color: '#fff' }}>
+      {/* 도입 섹션: 프라임에셋에서 당신의 비전을 완성하세요 */}
+      <section style={{ 
+        position: 'relative', 
+        width: '100%', 
+        overflow: 'hidden', 
+        background: '#000',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderTop: '2px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        {/* 배경 이미지 - 희망찬 이미지 */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000&auto=format&fit=crop)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.25
+        }} />
+        
+        {/* 그라데이션 오버레이 - 더 밝고 따뜻하게 */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(255,200,100,0.1), rgba(0,0,0,0.2))'
+        }} />
+
+        {/* 콘텐츠 */}
+        <div style={{ 
+          position: 'relative', 
+          zIndex: 10, 
+          maxWidth: '1400px', 
+          margin: '0 auto', 
+          padding: '0 clamp(20px, 4vw, 40px)',
+          width: '100%',
+          textAlign: 'center'
+        }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 style={{
+              fontSize: isMobile ? 'clamp(28px, 6vw, 36px)' : 'clamp(36px, 7vw, 80px)',
+              fontWeight: '900',
+              textAlign: 'center',
+              marginBottom: 'clamp(16px, 3vw, 24px)',
+              lineHeight: '1.3',
+              color: '#ffffff',
+              letterSpacing: '-1px'
+            }}>
+              프라임에셋에서
+            </h1>
+            <h2 style={{
+              fontSize: isMobile ? 'clamp(28px, 6vw, 36px)' : 'clamp(36px, 7vw, 80px)',
+              fontWeight: '900',
+              textAlign: 'center',
+              lineHeight: '1.3',
+              color: '#ffffff',
+              letterSpacing: '-1px'
+            }}>
+              당신의 비전을 완성하세요
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* SCROLL 인디케이터 - 하단 중앙 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          style={{
+            position: 'absolute',
+            bottom: 'clamp(40px, 6vw, 60px)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            color: '#ffffff'
+          }}
+        >
+          <motion.span
+            animate={{ 
+              scale: [1, 1.1, 1],
+              y: [0, 8, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              fontSize: 'clamp(10px, 1.5vw, 12px)',
+              fontWeight: '600',
+              letterSpacing: '0.2em',
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed'
+            }}
+          >
+            SCROLL
+          </motion.span>
+          <motion.div
+            animate={{ 
+              scaleY: [1, 1.3, 1],
+              opacity: [0.6, 1, 0.6]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              width: '1px',
+              height: 'clamp(40px, 6vw, 60px)',
+              background: 'linear-gradient(to bottom, #ffffff, transparent)'
+            }}
+          />
+        </motion.div>
+      </section>
+
       {/* Section 1: 당신의 첫 시작이, 최고의 시작이 되도록 */}
       <section style={{ 
         position: 'relative', 
@@ -193,9 +279,12 @@ export default function RecruitingSection() {
           {/* Benefits Strips */}
           <div style={{
             display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
             gap: '16px',
-            alignItems: 'flex-start',
-            minHeight: '600px'
+            alignItems: 'stretch',
+            minHeight: isMobile ? 'auto' : '700px',
+            height: isMobile ? 'auto' : '700px',
+            width: '100%'
           }}>
             {BENEFITS.map((benefit, idx) => {
               const Icon = benefit.icon;
@@ -203,12 +292,18 @@ export default function RecruitingSection() {
               return (
                 <motion.div
                   key={benefit.id}
+                  layout
                   initial={false}
                   animate={{
-                    flex: isExpanded ? 3 : 1,
-                    minWidth: isExpanded ? '400px' : '180px'
+                    flex: isExpanded ? (isMobile ? 1 : 3) : 1,
+                    minWidth: isExpanded ? (isMobile ? '100%' : '400px') : (isMobile ? '100%' : '180px'),
+                    width: isMobile ? '100%' : undefined
                   }}
-                  transition={{ duration: 0.8, ease: easeBezier }}
+                  transition={{ 
+                    duration: 1,
+                    ease: easeBezier,
+                    layout: { duration: 1, ease: easeBezier }
+                  }}
                   style={{
                     position: 'relative',
                     borderRadius: '24px',
@@ -217,7 +312,12 @@ export default function RecruitingSection() {
                     backgroundImage: `url(${benefit.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    border: isExpanded ? '2px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)'
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: '#1a1a1a',
+                    border: isExpanded ? '2px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)',
+                    minHeight: isMobile ? (isExpanded ? '500px' : '200px') : '700px',
+                    height: isMobile ? (isExpanded ? '500px' : '200px') : '700px',
+                    width: isMobile ? '100%' : undefined
                   }}
                   onClick={() => setActiveBenefit(isExpanded ? null : idx)}
                 >
@@ -225,19 +325,21 @@ export default function RecruitingSection() {
                     position: 'absolute',
                     inset: 0,
                     background: isExpanded 
-                      ? 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))'
-                      : 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
-                    transition: 'background 0.3s'
+                      ? 'linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95))'
+                      : 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
+                    transition: 'background 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                    zIndex: 1,
+                    willChange: 'background'
                   }} />
                   
                   <AnimatePresence>
                     {isExpanded ? (
                       <motion.div
                         key="expanded"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] } }}
+                        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.7 }}
                         style={{
                           position: 'relative',
                           zIndex: 10,
@@ -298,8 +400,8 @@ export default function RecruitingSection() {
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             {benefit.details.map((detail, i) => (
                               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                                <Check style={{ width: '20px', height: '20px', color: '#10b981', flexShrink: 0, marginTop: '2px' }} />
-                                <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(14px, 1.8vw, 18px)', lineHeight: '1.6' }}>
+                                <Check style={{ width: '24px', height: '24px', color: '#10b981', flexShrink: 0, marginTop: '2px' }} />
+                                <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(18px, 2.5vw, 24px)', lineHeight: '1.6' }}>
                                   {detail}
                                 </span>
                               </div>
@@ -352,426 +454,44 @@ export default function RecruitingSection() {
         </div>
       </section>
 
-      {/* Section 2: 업계 최고 수준의 신입 지원 시스템 */}
+      {/* Section 4: 상담 신청 */}
       <section style={{
         position: 'relative',
         width: '100%',
         overflow: 'hidden',
         background: '#000',
-        padding: 'clamp(60px, 10vw, 120px) 0'
-      }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
-          <h2 style={{
-            fontSize: 'clamp(28px, 5vw, 56px)',
-            fontWeight: '800',
-            textAlign: 'center',
-            marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.2',
-            color: '#fff'
-          }}>
-            업계 최고 수준의 <span style={{ color: '#10b981' }}>신입 지원 시스템</span>
-          </h2>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 'clamp(20px, 3vw, 24px)'
-          }}>
-            {BENEFITS.map((benefit, idx) => {
-              const Icon = benefit.icon;
-              return (
-                <div
-                  key={benefit.id}
-                  style={{
-                    position: 'relative',
-                    borderRadius: '24px',
-                    overflow: 'hidden',
-                    minHeight: '400px',
-                    backgroundImage: `url(${benefit.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7))'
-                  }} />
-                  <div style={{
-                    position: 'relative',
-                    zIndex: 10,
-                    padding: 'clamp(24px, 4vw, 32px)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end'
-                  }}>
-                    <div style={{
-                      width: '56px',
-                      height: '56px',
-                      borderRadius: '16px',
-                      background: `linear-gradient(to bottom right, ${benefit.color.includes('green') ? '#10b981, #059669' : benefit.color.includes('blue') ? '#3b82f6, #06b6d4' : benefit.color.includes('purple') ? '#a855f7, #ec4899' : '#ef4444, #f97316'})`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '16px'
-                    }}>
-                      <Icon style={{ width: '28px', height: '28px', color: 'white' }} />
-                    </div>
-                    <div style={{
-                      display: 'inline-block',
-                      background: 'rgba(255,255,255,0.2)',
-                      backdropFilter: 'blur(10px)',
-                      color: '#fff',
-                      fontSize: 'clamp(10px, 1.2vw, 12px)',
-                      fontWeight: '700',
-                      padding: '4px 12px',
-                      borderRadius: '50px',
-                      marginBottom: '12px'
-                    }}>
-                      {benefit.highlight}
-                    </div>
-                    <h3 style={{
-                      fontSize: 'clamp(18px, 2.5vw, 24px)',
-                      fontWeight: '800',
-                      color: '#fff',
-                      marginBottom: '12px',
-                      lineHeight: '1.3'
-                    }}>
-                      {benefit.title}
-                    </h3>
-                    <p style={{
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: '1.7',
-                      fontSize: 'clamp(13px, 1.8vw, 16px)'
-                    }}>
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: 시작하기, 정말 간단합니다 */}
-      <section style={{
-        position: 'relative',
-        width: '100%',
-        overflow: 'hidden',
-        background: '#000',
-        padding: 'clamp(60px, 10vw, 120px) 0'
-      }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
-          <h2 style={{
-            fontSize: 'clamp(28px, 5vw, 56px)',
-            fontWeight: '800',
-            textAlign: 'center',
-            marginBottom: '16px',
-            lineHeight: '1.2',
-            color: '#fff'
-          }}>
-            시작하기, 정말 간단합니다
-          </h2>
-          <p style={{
-            textAlign: 'center',
-            color: 'rgba(255,255,255,0.7)',
-            fontSize: 'clamp(16px, 2.5vw, 20px)',
-            marginBottom: 'clamp(40px, 6vw, 60px)'
-          }}>
-            부담 없이 상담부터 시작하세요
-          </p>
-
-          {/* Process Strips */}
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            alignItems: 'flex-start',
-            minHeight: '600px'
-          }}>
-            {PROCESS_STEPS.map((step, idx) => {
-              const isExpanded = activeProcess === idx;
-              return (
-                <motion.div
-                  key={step.step}
-                  initial={false}
-                  animate={{
-                    flex: isExpanded ? 3 : 1,
-                    minWidth: isExpanded ? '400px' : '180px'
-                  }}
-                  transition={{ duration: 0.8, ease: easeBezier }}
-                  style={{
-                    position: 'relative',
-                    borderRadius: '24px',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    backgroundImage: `url(${step.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    border: isExpanded ? '2px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.1)'
-                  }}
-                  onClick={() => setActiveProcess(isExpanded ? null : idx)}
-                >
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: isExpanded 
-                      ? 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))'
-                      : 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0), rgba(0,0,0,0.3))',
-                    transition: 'background 0.3s'
-                  }} />
-                  
-                  <AnimatePresence>
-                    {isExpanded ? (
-                      <motion.div
-                        key="expanded"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        style={{
-                          position: 'relative',
-                          zIndex: 10,
-                          padding: 'clamp(32px, 5vw, 48px)',
-                          height: '100%',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <div>
-                          <div style={{
-                            fontSize: 'clamp(12px, 1.5vw, 14px)',
-                            fontWeight: '600',
-                            letterSpacing: '0.14em',
-                            color: '#3b82f6',
-                            marginBottom: '16px'
-                          }}>
-                            STEP {step.step}
-                          </div>
-                          
-                          <h3 style={{
-                            fontSize: 'clamp(24px, 3.5vw, 36px)',
-                            fontWeight: '800',
-                            color: '#fff',
-                            marginBottom: '16px',
-                            lineHeight: '1.2'
-                          }}>
-                            {step.title}
-                          </h3>
-                          
-                          <p style={{
-                            color: 'rgba(255,255,255,0.9)',
-                            fontSize: 'clamp(16px, 2.2vw, 20px)',
-                            marginBottom: '32px',
-                            lineHeight: '1.6'
-                          }}>
-                            {step.desc}
-                          </p>
-
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                            {step.details.map((detail, i) => (
-                              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                                <Check style={{ width: '20px', height: '20px', color: '#10b981', flexShrink: 0, marginTop: '2px' }} />
-                                <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(14px, 1.8vw, 18px)', lineHeight: '1.6' }}>
-                                  {detail}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="collapsed"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        style={{
-                          position: 'absolute',
-                          bottom: '24px',
-                          left: '24px',
-                          right: '24px',
-                          zIndex: 10
-                        }}
-                      >
-                        <div style={{
-                          fontSize: 'clamp(10px, 1.2vw, 12px)',
-                          fontWeight: '600',
-                          letterSpacing: '0.14em',
-                          color: '#3b82f6',
-                          marginBottom: '8px'
-                        }}>
-                          STEP {step.step}
-                        </div>
-                        <h3 style={{
-                          fontSize: 'clamp(14px, 2vw, 18px)',
-                          fontWeight: '700',
-                          color: '#fff',
-                          lineHeight: '1.3'
-                        }}>
-                          {step.title}
-                        </h3>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: 지점장 소개 */}
-      <section style={{
-        position: 'relative',
-        width: '100%',
-        overflow: 'hidden',
-        background: '#000',
-        padding: 'clamp(60px, 10vw, 120px) 0'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
-          <h2 style={{
-            fontSize: 'clamp(28px, 5vw, 56px)',
-            fontWeight: '800',
-            textAlign: 'center',
-            marginBottom: 'clamp(40px, 6vw, 60px)',
-            lineHeight: '1.2',
-            color: '#fff'
-          }}>
-            지점장 소개
-          </h2>
-
-          <div style={{
-            background: 'linear-gradient(to right, #1e293b, #1e40af)',
-            borderRadius: '24px',
-            padding: 'clamp(32px, 5vw, 48px)',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'clamp(32px, 5vw, 48px)',
-            alignItems: 'center'
-          }}>
-            <div>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '50px',
-                padding: '8px 16px',
-                fontSize: 'clamp(12px, 1.5vw, 14px)',
-                fontWeight: '700',
-                marginBottom: '24px'
-              }}>
-                <Award style={{ width: '16px', height: '16px' }} />
-                <span>Your Leader</span>
-              </div>
-              
-              <h3 style={{
-                fontSize: 'clamp(28px, 4vw, 40px)',
-                fontWeight: '800',
-                marginBottom: '16px',
-                color: '#fff'
-              }}>
-                강성현 지점장
-              </h3>
-              
-              <p style={{
-                fontSize: 'clamp(18px, 2.5vw, 24px)',
-                color: '#bfdbfe',
-                marginBottom: '24px',
-                fontStyle: 'italic'
-              }}>
-                "함께 성장하는 것이 진짜 리더십입니다"
-              </p>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', color: '#d1d5db' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <Check style={{ width: '24px', height: '24px', color: '#10b981', flexShrink: 0, marginTop: '4px' }} />
-                  <span style={{ lineHeight: '1.7', fontSize: 'clamp(14px, 2vw, 18px)' }}>10년 이상 보험 업계 경력, 검증된 노하우</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <Check style={{ width: '24px', height: '24px', color: '#10b981', flexShrink: 0, marginTop: '4px' }} />
-                  <span style={{ lineHeight: '1.7', fontSize: 'clamp(14px, 2vw, 18px)' }}>500명 이상의 고객 관리 경험</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <Check style={{ width: '24px', height: '24px', color: '#10b981', flexShrink: 0, marginTop: '4px' }} />
-                  <span style={{ lineHeight: '1.7', fontSize: 'clamp(14px, 2vw, 18px)' }}>신입부터 팀장까지, 검증된 교육 시스템</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <Check style={{ width: '24px', height: '24px', color: '#10b981', flexShrink: 0, marginTop: '4px' }} />
-                  <span style={{ lineHeight: '1.7', fontSize: 'clamp(14px, 2vw, 18px)' }}>지인 영업 탈피, 전문적 영업 추구</span>
-                </div>
-              </div>
-            </div>
-            
-            <div style={{ position: 'relative' }}>
-              <div style={{
-                aspectRatio: '1',
-                background: 'linear-gradient(to bottom right, #3b82f6, #9333ea)',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: '300px'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    width: '128px',
-                    height: '128px',
-                    background: 'rgba(255, 255, 255, 0.2)',
-                    borderRadius: '50%',
-                    margin: '0 auto 16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '64px'
-                  }}>
-                    👔
-                  </div>
-                  <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: 'clamp(14px, 2vw, 18px)' }}>강성현 지점장</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: 상담 신청 양식 */}
-      <section style={{
-        position: 'relative',
-        width: '100%',
-        overflow: 'hidden',
-        background: '#000',
-        padding: 'clamp(60px, 10vw, 120px) 0'
+        padding: 'clamp(30px, 5vw, 60px) 0'
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 clamp(20px, 4vw, 40px)' }}>
+          {/* 상담 신청 양식 */}
+          <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <h2 style={{
             fontSize: 'clamp(28px, 5vw, 56px)',
             fontWeight: '800',
-            textAlign: 'center',
-            marginBottom: 'clamp(40px, 6vw, 60px)',
+                marginBottom: 'clamp(16px, 2.5vw, 24px)',
             lineHeight: '1.2',
             color: '#fff'
           }}>
-            상담 신청
+            함께하기 신청
           </h2>
 
           <form onSubmit={handleSubmit} style={{
             background: '#fff',
             borderRadius: '28px',
-            padding: 'clamp(32px, 5vw, 48px)',
-            color: '#000'
-          }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                padding: 'clamp(20px, 3vw, 32px)',
+                color: '#000',
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
+              }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)',
                   fontWeight: '600',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                   color: '#111827'
                 }}>
                   이름 *
@@ -783,10 +503,10 @@ export default function RecruitingSection() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: '10px 14px',
                     border: '2px solid #e5e7eb',
                     borderRadius: '12px',
-                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    fontSize: 'clamp(13px, 1.8vw, 15px)',
                     outline: 'none',
                     transition: 'border-color 0.3s',
                     boxSizing: 'border-box'
@@ -800,9 +520,9 @@ export default function RecruitingSection() {
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)',
                   fontWeight: '600',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                   color: '#111827'
                 }}>
                   전화번호 *
@@ -812,6 +532,74 @@ export default function RecruitingSection() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  style={{
+                    width: '100%',
+                    padding: '10px 14px',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '12px',
+                    fontSize: 'clamp(13px, 1.8vw, 15px)',
+                    outline: 'none',
+                    transition: 'border-color 0.3s',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                  onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  placeholder="010-1234-5678"
+                />
+              </div>
+
+              {/* 성별과 생년월일 - 같은 행에 배치 */}
+              <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '16px' }}>
+                <div style={{ flex: isMobile ? '1' : '0 0 40%' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontWeight: '600',
+                  marginBottom: '8px',
+                  color: '#111827'
+                }}>
+                    성별 *
+                  </label>
+                  <select
+                    required
+                    value={formData.gender}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 14px',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '12px',
+                      fontSize: 'clamp(13px, 1.8vw, 15px)',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      boxSizing: 'border-box',
+                      background: '#fff',
+                      cursor: 'pointer'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  >
+                    <option value="">선택하세요</option>
+                    <option value="male">남성</option>
+                    <option value="female">여성</option>
+                  </select>
+                </div>
+
+                <div style={{ flex: isMobile ? '1' : '0 0 calc(60% - 16px)' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    fontWeight: '600',
+                    marginBottom: '8px',
+                    color: '#111827'
+                  }}>
+                    생년월일 *
+                </label>
+                <input
+                    type="date"
+                    required
+                    value={formData.birthDate}
+                    onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
                   style={{
                     width: '100%',
                     padding: '14px 16px',
@@ -824,16 +612,16 @@ export default function RecruitingSection() {
                   }}
                   onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
                   onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
-                  placeholder="010-1234-5678"
                 />
+                </div>
               </div>
 
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)',
                   fontWeight: '600',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                   color: '#111827'
                 }}>
                   이메일
@@ -844,10 +632,10 @@ export default function RecruitingSection() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: '10px 14px',
                     border: '2px solid #e5e7eb',
                     borderRadius: '12px',
-                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    fontSize: 'clamp(13px, 1.8vw, 15px)',
                     outline: 'none',
                     transition: 'border-color 0.3s',
                     boxSizing: 'border-box'
@@ -861,9 +649,9 @@ export default function RecruitingSection() {
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)',
                   fontWeight: '600',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                   color: '#111827'
                 }}>
                   문의 내용
@@ -871,13 +659,13 @@ export default function RecruitingSection() {
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
+                  rows={4}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: '10px 14px',
                     border: '2px solid #e5e7eb',
                     borderRadius: '12px',
-                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    fontSize: 'clamp(13px, 1.8vw, 15px)',
                     outline: 'none',
                     transition: 'border-color 0.3s',
                     boxSizing: 'border-box',
@@ -894,10 +682,10 @@ export default function RecruitingSection() {
                 type="submit"
                 style={{
                   width: '100%',
-                  padding: '16px 32px',
+                  padding: '12px 28px',
                   background: '#000',
                   color: '#fff',
-                  fontSize: 'clamp(16px, 2.5vw, 18px)',
+                  fontSize: 'clamp(14px, 2.2vw, 16px)',
                   fontWeight: '700',
                   borderRadius: '50px',
                   border: 'none',
@@ -924,6 +712,7 @@ export default function RecruitingSection() {
               </button>
             </div>
           </form>
+          </div>
         </div>
       </section>
     </div>

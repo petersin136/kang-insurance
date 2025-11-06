@@ -16,13 +16,13 @@ export default function Header() {
   const headerBg = useTransform(
     scrollY,
     [0, 100],
-    ['rgba(40, 40, 40, 0.3)', 'rgba(30, 30, 30, 0.5)']
+    ['rgba(255, 255, 255, 0.6)', 'rgba(255, 255, 255, 0.8)']
   );
   
   const headerBorder = useTransform(
     scrollY,
     [0, 100],
-    ['rgba(80, 80, 80, 0.1)', 'rgba(80, 80, 80, 0.2)']
+    ['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.3)']
   );
 
   // 스크롤 시 네비게이션을 중앙에서 오른쪽 끝으로 부드럽게 이동
@@ -45,6 +45,7 @@ export default function Header() {
     { label: '고객 후기', href: '#testimonials' },
     { label: '보험 상품', href: '#services' },
     { label: '상담 신청', href: '#contact' },
+    { label: '함께하기', href: '#recruiting' },
   ];
 
   // 스크롤 이동 핸들러
@@ -101,7 +102,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-[16px] font-semibold tracking-wide text-white hover:text-gray-300 transition-colors duration-300 drop-shadow-lg whitespace-nowrap cursor-pointer"
+                className="text-[16px] font-semibold tracking-wide text-[#2b2825] hover:text-[#5a534e] transition-colors duration-300 drop-shadow-lg whitespace-nowrap cursor-pointer"
               >
                 {item.label}
               </a>
@@ -126,7 +127,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white drop-shadow-lg"
+              className="text-[#2b2825] drop-shadow-lg"
             aria-label="메뉴"
             style={{ marginRight: 0, transform: 'translateX(2px)' }}
           >
@@ -145,11 +146,11 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-gray-900/98 backdrop-blur-md border-b border-gray-700 shadow-xl"
+            className="md:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md border-b border-gray-200 shadow-xl"
           >
             <nav className="flex flex-col py-6 px-6">
               {/* 모바일 메뉴 로고 */}
-              <div className="flex justify-center mb-6 pb-4 border-b border-gray-700">
+              <div className="flex justify-center mb-6 pb-4 border-b border-gray-200">
                 <Link
                   href="https://primeasset.kr/"
                   target="_blank"
@@ -169,7 +170,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="py-4 text-lg font-semibold tracking-wide text-center text-white hover:text-gray-300 transition-colors border-b border-gray-700/50 last:border-0 cursor-pointer"
+                  className="py-4 text-lg font-semibold tracking-wide text-center text-[#2b2825] hover:text-[#5a534e] transition-colors border-b border-gray-200 last:border-0 cursor-pointer"
                 >
                   {item.label}
                 </a>

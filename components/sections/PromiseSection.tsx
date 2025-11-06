@@ -89,7 +89,7 @@ export default function PromiseSection() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl font-bold text-[#2b2825] leading-[1.6] mb-16"
+              className="text-[54px] font-bold text-[#2b2825] leading-[1.6] mb-16"
             >
               "아마 잘 되어 있겠지" "괜찮겠지"<br />
               하고 지나치기엔<br />
@@ -98,16 +98,16 @@ export default function PromiseSection() {
 
             {/* 본문 내용 */}
             <div className="space-y-8">
-              <p className="text-2xl leading-[2.0] text-[#3a3530] font-semibold mt-6">
+              <p className="text-[28px] leading-[2.0] text-[#3a3530] font-semibold mt-6">
                 우린 매달 피 같은 돈을 냅니다.
               </p>
               
-              <p className="text-2xl leading-[2.0] text-[#3a3530] font-semibold">
+              <p className="text-[28px] leading-[2.0] text-[#3a3530] font-semibold">
                 그런데 내 보험이 지금 뭘 보장하고, 언제까지 유지되고,<br />
                 정말 필요한 보장에 잘 들어가 있는지… 정확히 알고 계신가요?
               </p>
               
-              <p className="text-xl leading-[2.0] text-[#5a534e] font-medium">
+              <p className="text-[22px] leading-[2.0] text-[#5a534e] font-medium">
                 대부분은 그저 서랍 속에 쌓여 있는 보험증권, 핸드폰 어딘가에 저장된 보험 파일들...<br />
                 언제 가입했는지도 가물가물한 계약들....
               </p>

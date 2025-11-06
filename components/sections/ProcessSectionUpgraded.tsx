@@ -254,17 +254,17 @@ export default function ProcessSectionUpgraded() {
           style={{
             marginTop: 'clamp(30px, 5vw, 70px)',
             padding: 'clamp(24px, 4vw, 45px) clamp(20px, 4vw, 70px)',
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+            background: '#ffffff',
             borderRadius: '20px',
-            border: '2px solid #3b82f6',
-            boxShadow: '0 8px 30px rgba(59, 130, 246, 0.15)'
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)'
           }}
         >
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <p style={{
               fontSize: 'clamp(18px, 3.5vw, 30px)',
               fontWeight: '800',
-              color: '#1e40af',
+              color: '#1a1a1a',
               marginBottom: 'clamp(18px, 3vw, 26px)',
               lineHeight: '1.5',
               textAlign: 'center'
@@ -273,8 +273,8 @@ export default function ProcessSectionUpgraded() {
             </p>
             <p style={{
               fontSize: 'clamp(14px, 2.8vw, 22px)',
-              color: '#2563eb',
-              fontWeight: '600',
+              color: '#1a1a1a',
+              fontWeight: '400',
               lineHeight: '1.7',
               marginBottom: 'clamp(16px, 2.5vw, 22px)',
               textAlign: 'left'
@@ -283,8 +283,8 @@ export default function ProcessSectionUpgraded() {
             </p>
             <p style={{
               fontSize: 'clamp(14px, 2.8vw, 20px)',
-              color: '#1e40af',
-              fontWeight: '600',
+              color: '#1a1a1a',
+              fontWeight: '400',
               marginBottom: 'clamp(16px, 2.5vw, 22px)',
               lineHeight: '1.7',
               textAlign: 'left'
@@ -293,13 +293,13 @@ export default function ProcessSectionUpgraded() {
             </p>
             <p style={{
               fontSize: 'clamp(14px, 2.8vw, 20px)',
-              color: '#3b82f6',
-              fontWeight: '600',
+              color: '#1a1a1a',
+              fontWeight: '400',
               margin: 0,
               lineHeight: '1.7',
               textAlign: 'left'
             }}>
-              📧 맞춤 보고서 제공 후, <span style={{ fontWeight: '800' }}>대면 미팅 또는 서면(메일)</span> 중 원하시는 방식으로 편하게 받아보실 수 있습니다.
+              📧 맞춤 보고서 제공 후, <span style={{ fontWeight: '800', color: '#3b82f6' }}>대면 미팅 또는 서면(메일)</span> 중 원하시는 방식으로 편하게 받아보실 수 있습니다.
             </p>
           </div>
         </motion.div>

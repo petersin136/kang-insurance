@@ -41,12 +41,12 @@ export default function StatsSectionUpgraded() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} style={{ padding: 'clamp(40px, 10vw, 96px) 0', background: 'linear-gradient(to right, #2563eb, #1e40af)', color: 'white', width: '100%', overflow: 'hidden' }}>
+    <section ref={ref} style={{ padding: 'clamp(30px, 6vw, 50px) 0', background: 'linear-gradient(to right, #2563eb, #1e40af)', color: 'white', width: '100%', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(16px, 4vw, 16px)', width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 64px)' }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(24px, 5vw, 40px)' }}
         >
           <h2 style={{ fontSize: 'clamp(28px, 6vw, 60px)', fontWeight: 'bold', marginBottom: '16px' }}>
             신뢰할 수 있는 파트너
