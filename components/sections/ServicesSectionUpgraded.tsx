@@ -109,25 +109,25 @@ export default function ServicesSectionUpgraded() {
         }} className="grid-cols-2 md:grid-cols-3">
           {services.map((service, index) => (
             <Link href={service.link || '#'} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                style={{
-                  aspectRatio: '3/4',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              style={{
+                aspectRatio: '3/4',
+                display: 'flex',
+                flexDirection: 'column',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
                   boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
                   width: '100%',
                   height: '100%',
                   backgroundColor: '#ffffff',
                   padding: '16px',
                   borderRadius: '8px'
-                }}
-              >
+              }}
+            >
               
               <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               {/* 이미지 영역 */}
@@ -169,7 +169,7 @@ export default function ServicesSectionUpgraded() {
                 </p>
               </div>
               </div>
-              </motion.div>
+            </motion.div>
             </Link>
           ))}
         </div>

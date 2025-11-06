@@ -48,67 +48,70 @@ export default function PromiseSection() {
           transition={{ duration: 0.8 }}
         >
           {/* 모바일 버전 */}
-          <div className="md:hidden space-y-5">
-            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              솔직히 말하면 그렇습니다.
-            </p>
-            
-            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              우린 매달 피 같은 돈을 냅니다.
-            </p>
-            
-            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              그런데 내 보험이<br />
-              지금 뭘 보장하고,<br />
-              언제까지 유지되고,
-            </p>
-            
-            <p className="text-[17px] leading-[1.8] text-[#5a534e] font-light">
-              정말 필요한 보장에<br />
-              잘 들어가 있는지…<br />
-              정확히 알고 계신가요?
-            </p>
-            
-            <p className="text-[16px] leading-[1.8] text-[#7a706b] font-light">
-              대부분은 그저<br />
-              서랍 속에 쌓여 있는 보험증권,<br />
-              핸드폰 어딘가에 저장된 보험 파일,<br />
-              언제 가입했는지도<br />
-              가물가물한 계약들.
-            </p>
-
-            <motion.p
+          <div className="md:hidden space-y-6">
+            {/* 제목 - 맨 위에 배치 */}
+            <motion.h2
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-[20px] leading-[1.5] font-bold text-[#2b2825] pt-4"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-[26px] leading-[1.8] font-bold text-[#2b2825] mb-14"
             >
-              "아마 잘 되어 있겠지"<br />
-              "괜찮겠지" 하고 지나치기엔<br />
-              가족의 안심이 달린 일입니다.
-            </motion.p>
+              "아마 잘 되어 있겠지" "괜찮겠지"<br />
+              하고 지나치기엔<br />
+              <span className="text-[#ef4444]">가족의 안심이 달린 일입니다.</span>
+            </motion.h2>
+
+            {/* 본문 내용 */}
+            <div className="space-y-8">
+              <p className="text-[21px] leading-[2.2] text-[#3a3530] font-semibold mt-4">
+                우린 매달 피 같은 돈을 냅니다.
+              </p>
+              
+              <p className="text-[21px] leading-[2.2] text-[#3a3530] font-semibold">
+                그런데 내 보험이 지금 뭘 보장하고,<br />
+                언제까지 유지되고,<br />
+                정말 필요한 보장이 잘 들어가 있는지<br />
+                정확히 알고 계신가요?
+              </p>
+              
+              <p className="text-[20px] leading-[2.2] text-[#5a534e] font-medium">
+                대부분은 그저 서랍 속에 쌓여 있는 보험증권<br />
+                핸드폰 어딘가에 저장된 보험 파일들...<br />
+                언제 가입했는지도 가물가물한 계약들....
+              </p>
+            </div>
           </div>
 
           {/* 데스크톱 버전 */}
-          <div className="hidden md:block">
-            <p className="text-3xl leading-loose text-[#5a534e] font-light mb-8">
-              {content.text1}<br />
-              {content.text2}<br />
-              {content.text3}
-            </p>
-            
-            <p className="text-2xl leading-loose text-[#7a706b] font-light mb-10">
-              {content.text4}
-            </p>
-
-            <motion.p
+          <div className="hidden md:block space-y-8">
+            {/* 제목 - 맨 위에 배치 */}
+            <motion.h2
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl font-bold text-[#2b2825] leading-tight"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-5xl font-bold text-[#2b2825] leading-[1.6] mb-16"
             >
-              {content.text5}
-            </motion.p>
+              "아마 잘 되어 있겠지" "괜찮겠지"<br />
+              하고 지나치기엔<br />
+              <span className="text-[#ef4444]">가족의 안심이 달린 일입니다.</span>
+            </motion.h2>
+
+            {/* 본문 내용 */}
+            <div className="space-y-8">
+              <p className="text-2xl leading-[2.0] text-[#3a3530] font-semibold mt-6">
+                우린 매달 피 같은 돈을 냅니다.
+              </p>
+              
+              <p className="text-2xl leading-[2.0] text-[#3a3530] font-semibold">
+                그런데 내 보험이 지금 뭘 보장하고, 언제까지 유지되고,<br />
+                정말 필요한 보장에 잘 들어가 있는지… 정확히 알고 계신가요?
+              </p>
+              
+              <p className="text-xl leading-[2.0] text-[#5a534e] font-medium">
+                대부분은 그저 서랍 속에 쌓여 있는 보험증권, 핸드폰 어딘가에 저장된 보험 파일들...<br />
+                언제 가입했는지도 가물가물한 계약들....
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -74,7 +74,7 @@ export default function ContactSectionUpgraded() {
         return;
       }
 
-      alert('상담 신청이 접수되었습니다! 24시간 이내 연락드리겠습니다.');
+    alert('상담 신청이 접수되었습니다! 24시간 이내 연락드리겠습니다.');
       setFormData({ name: '', phone: '', email: '', message: '', agreed: false });
     } catch (error) {
       console.error('Submit error:', error);
@@ -567,58 +567,6 @@ export default function ContactSectionUpgraded() {
               * 표시는 필수 입력 항목입니다
             </p>
           </motion.form>
-        </div>
-
-        {/* 모바일 전용 관리자 링크 */}
-        <div className="md:hidden" style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          paddingTop: '60px',
-          paddingBottom: '40px'
-        }}>
-          <a
-            href="/manage"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              padding: '14px 28px',
-              background: '#2b2825',
-              border: '2px solid #a68a64',
-              borderRadius: '50px',
-              color: '#ffffff',
-              fontSize: '15px',
-              fontWeight: '600',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
-            }}
-            onTouchStart={(e) => {
-              e.currentTarget.style.background = '#a68a64';
-              e.currentTarget.style.borderColor = '#8b7355';
-              e.currentTarget.style.transform = 'scale(0.98)';
-            }}
-            onTouchEnd={(e) => {
-              e.currentTarget.style.background = '#2b2825';
-              e.currentTarget.style.borderColor = '#a68a64';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          >
-            <svg 
-              width="18" 
-              height="18" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5"
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            관리자 모드
-          </a>
         </div>
       </div>
     </section>

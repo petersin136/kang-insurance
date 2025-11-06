@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { RecommendedProduct } from '@/lib/supabase';
 import Link from 'next/link';
+import AuthGuard from '@/components/admin/AuthGuard';
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const [products, setProducts] = useState<RecommendedProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -165,28 +166,92 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header - 모바일 최적화 */}
-      <header className="bg-gray-900 text-white px-4 py-4 md:px-8 md:py-5 shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">📦 추천 보험상품 관리</h1>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Link href="/manage" className="text-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition-colors">
+    <div style={{ minHeight: '100vh', background: '#faf8f3' }}>
+      {/* Header */}
+      <header style={{ 
+        background: '#2b2825', 
+        color: '#faf8f3', 
+        padding: 'clamp(16px, 3vw, 24px) clamp(20px, 4vw, 32px)',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <div style={{ maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+          <h1 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: '700', marginBottom: 'clamp(12px, 2vw, 16px)', color: '#faf8f3' }}>📦 추천 보험상품 관리</h1>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.5vw, 12px)' }}>
+            <Link href="/manage" style={{ 
+              color: '#2b2825', 
+              textDecoration: 'none', 
+              padding: 'clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px)', 
+              background: '#faf8f3', 
+              borderRadius: '8px',
+              fontSize: 'clamp(13px, 1.8vw, 15px)',
+              fontWeight: '500',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#e8e3d9';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#faf8f3';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+            >
               ← 관리자 홈
             </Link>
-            <Link href="/" className="text-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition-colors">
+            <Link href="/" style={{ 
+              color: '#2b2825', 
+              textDecoration: 'none', 
+              padding: 'clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px)', 
+              background: '#faf8f3', 
+              borderRadius: '8px',
+              fontSize: 'clamp(13px, 1.8vw, 15px)',
+              fontWeight: '500',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#e8e3d9';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#faf8f3';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+            >
               사이트로 돌아가기
             </Link>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8">
-        {/* Add Button - 모바일 최적화 */}
-        <div className="mb-6">
+      <div style={{ maxWidth: '1600px', margin: '0 auto', padding: 'clamp(32px, 5vw, 60px) clamp(20px, 4vw, 40px)', width: '100%' }}>
+        {/* Add Button */}
+        <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="w-full sm:w-auto px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold text-sm md:text-base transition-colors"
+            style={{
+              width: '100%',
+              maxWidth: 'clamp(280px, 40vw, 400px)',
+              padding: 'clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px)',
+              background: '#2b2825',
+              color: '#faf8f3',
+              border: 'none',
+              borderRadius: '12px',
+              fontSize: 'clamp(14px, 2vw, 16px)',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#1a1715';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#2b2825';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
           >
             {showAddForm ? '취소' : '+ 새 상품 추가'}
           </button>
@@ -195,25 +260,27 @@ export default function ProductsPage() {
         {/* Add Form */}
         {showAddForm && (
           <div style={{ 
-            background: 'white', 
-            borderRadius: '12px', 
-            padding: '32px',
-            marginBottom: '24px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+            background: '#ffffff', 
+            borderRadius: '20px', 
+            padding: 'clamp(32px, 5vw, 48px)',
+            marginBottom: 'clamp(32px, 5vw, 48px)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.06)'
           }}>
-            <h2 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>새 상품 추가</h2>
+            <h2 style={{ fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: '700', marginBottom: 'clamp(24px, 4vw, 32px)', color: '#2b2825' }}>새 상품 추가</h2>
             <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>보험 종류</label>
+              <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
+                <label style={{ display: 'block', marginBottom: 'clamp(8px, 1.5vw, 12px)', fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>보험 종류</label>
                 <select
                   value={formData.insurance_type}
                   onChange={(e) => setFormData({ ...formData, insurance_type: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
+                    padding: 'clamp(12px, 2vw, 16px)',
+                    border: '2px solid #e8e3d9',
                     borderRadius: '8px',
-                    fontSize: '16px'
+                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    color: '#2b2825',
+                    background: '#ffffff'
                   }}
                 >
                   {insuranceTypes.map((type) => (
@@ -222,8 +289,8 @@ export default function ProductsPage() {
                 </select>
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>상품명 *</label>
+              <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
+                <label style={{ display: 'block', marginBottom: 'clamp(8px, 1.5vw, 12px)', fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>상품명 *</label>
                 <input
                   type="text"
                   required
@@ -232,16 +299,18 @@ export default function ProductsPage() {
                   placeholder="예: 삼성생명 프리미엄 종신보험"
                   style={{
                     width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
+                    padding: 'clamp(12px, 2vw, 16px)',
+                    border: '2px solid #e8e3d9',
                     borderRadius: '8px',
-                    fontSize: '16px'
+                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    color: '#2b2825',
+                    background: '#ffffff'
                   }}
                 />
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>짧은 설명</label>
+              <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
+                <label style={{ display: 'block', marginBottom: 'clamp(8px, 1.5vw, 12px)', fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>짧은 설명</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -249,17 +318,19 @@ export default function ProductsPage() {
                   placeholder="상품의 핵심 특징을 간단히 설명해주세요"
                   style={{
                     width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
+                    padding: 'clamp(12px, 2vw, 16px)',
+                    border: '2px solid #e8e3d9',
                     borderRadius: '8px',
-                    fontSize: '16px',
-                    resize: 'vertical'
+                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    resize: 'vertical',
+                    color: '#2b2825',
+                    background: '#ffffff'
                   }}
                 />
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>상세 내용</label>
+              <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
+                <label style={{ display: 'block', marginBottom: 'clamp(8px, 1.5vw, 12px)', fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>상세 내용</label>
                 <textarea
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -267,26 +338,28 @@ export default function ProductsPage() {
                   placeholder="상품에 대한 자세한 설명을 작성해주세요"
                   style={{
                     width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
+                    padding: 'clamp(12px, 2vw, 16px)',
+                    border: '2px solid #e8e3d9',
                     borderRadius: '8px',
-                    fontSize: '16px',
-                    resize: 'vertical'
+                    fontSize: 'clamp(14px, 2vw, 16px)',
+                    resize: 'vertical',
+                    color: '#2b2825',
+                    background: '#ffffff'
                   }}
                 />
               </div>
 
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>상품 이미지</label>
+              <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
+                <label style={{ display: 'block', marginBottom: 'clamp(8px, 1.5vw, 12px)', fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>상품 이미지</label>
                 
                 {/* 이미지 업로드 */}
                 <div style={{ 
-                  border: '2px dashed #ddd', 
-                  borderRadius: '8px', 
-                  padding: '24px', 
+                  border: '2px dashed #e8e3d9', 
+                  borderRadius: '12px', 
+                  padding: 'clamp(24px, 4vw, 32px)', 
                   textAlign: 'center',
-                  marginBottom: '12px',
-                  background: formData.image_url ? '#f8f9fa' : 'white'
+                  marginBottom: 'clamp(12px, 2vw, 16px)',
+                  background: formData.image_url ? '#faf8f3' : '#ffffff'
                 }}>
                   {formData.image_url ? (
                     <div>
@@ -322,15 +395,27 @@ export default function ProductsPage() {
                     <div>
                       <label style={{ 
                         display: 'inline-block',
-                        padding: '12px 24px',
-                        background: '#1a1a1a',
-                        color: 'white',
+                        padding: 'clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px)',
+                        background: '#2b2825',
+                        color: '#faf8f3',
                         borderRadius: '8px',
                         cursor: uploading ? 'not-allowed' : 'pointer',
-                        fontSize: '16px',
+                        fontSize: 'clamp(14px, 2vw, 16px)',
                         fontWeight: '600',
-                        opacity: uploading ? 0.6 : 1
-                      }}>
+                        opacity: uploading ? 0.6 : 1,
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!uploading) {
+                          e.currentTarget.style.background = '#1a1715';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!uploading) {
+                          e.currentTarget.style.background = '#2b2825';
+                        }
+                      }}
+                      >
                         {uploading ? '업로드 중...' : '📷 이미지 선택'}
                         <input
                           type="file"
@@ -340,7 +425,7 @@ export default function ProductsPage() {
                           style={{ display: 'none' }}
                         />
                       </label>
-                      <p style={{ marginTop: '12px', fontSize: '14px', color: '#666' }}>
+                      <p style={{ marginTop: 'clamp(12px, 2vw, 16px)', fontSize: 'clamp(13px, 1.8vw, 15px)', color: '#5a534e' }}>
                         JPG, PNG, GIF 파일 (최대 5MB)
                       </p>
                     </div>
@@ -352,14 +437,27 @@ export default function ProductsPage() {
                 type="submit"
                 disabled={uploading}
                 style={{
-                  padding: '12px 32px',
-                  background: uploading ? '#ccc' : '#1a1a1a',
-                  color: 'white',
+                  padding: 'clamp(12px, 2vw, 16px) clamp(32px, 4vw, 40px)',
+                  background: uploading ? '#ccc' : '#2b2825',
+                  color: '#faf8f3',
                   border: 'none',
                   borderRadius: '8px',
                   cursor: uploading ? 'not-allowed' : 'pointer',
-                  fontSize: '16px',
-                  fontWeight: '600'
+                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  fontWeight: '600',
+                  transition: 'all 0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  if (!uploading) {
+                    e.currentTarget.style.background = '#1a1715';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!uploading) {
+                    e.currentTarget.style.background = '#2b2825';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }
                 }}
               >
                 저장
@@ -370,26 +468,39 @@ export default function ProductsPage() {
 
         {/* Products List */}
         <div style={{ 
-          background: 'white', 
-          borderRadius: '12px', 
-          padding: '32px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+          background: '#ffffff', 
+          borderRadius: '20px', 
+          padding: 'clamp(32px, 5vw, 48px)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.06)'
         }}>
-          <h2 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>등록된 상품</h2>
+          <h2 style={{ fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: '700', marginBottom: 'clamp(24px, 4vw, 32px)', color: '#2b2825' }}>등록된 상품</h2>
           
           {loading ? (
-            <p style={{ textAlign: 'center', color: '#666', padding: '40px' }}>로딩 중...</p>
+            <p style={{ textAlign: 'center', color: '#5a534e', padding: 'clamp(40px, 6vw, 60px)', fontSize: 'clamp(14px, 2vw, 16px)' }}>로딩 중...</p>
           ) : products.length === 0 ? (
-            <p style={{ textAlign: 'center', color: '#666', padding: '40px' }}>등록된 상품이 없습니다.</p>
+            <p style={{ textAlign: 'center', color: '#5a534e', padding: 'clamp(40px, 6vw, 60px)', fontSize: 'clamp(14px, 2vw, 16px)' }}>등록된 상품이 없습니다.</p>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(280px, 35vw, 400px), 1fr))', gap: 'clamp(24px, 4vw, 32px)' }}>
               {products.map((product) => (
                 <div key={product.id} style={{ 
-                  border: '1px solid #ddd', 
-                  borderRadius: '12px', 
-                  padding: '20px',
-                  position: 'relative'
-                }}>
+                  border: '2px solid #e8e3d9', 
+                  borderRadius: '16px', 
+                  padding: 'clamp(20px, 3vw, 28px)',
+                  position: 'relative',
+                  background: '#ffffff',
+                  transition: 'all 0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#a68a64';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#e8e3d9';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+                >
                   {product.image_url && (
                     <img 
                       src={product.image_url} 
@@ -403,25 +514,33 @@ export default function ProductsPage() {
                       }}
                     />
                   )}
-                  <div style={{ marginBottom: '8px', fontSize: '12px', color: '#666', fontWeight: '600', textTransform: 'uppercase' }}>
+                  <div style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)', fontSize: 'clamp(11px, 1.5vw, 13px)', color: '#a68a64', fontWeight: '600', textTransform: 'uppercase' }}>
                     {insuranceTypes.find(t => t.value === product.insurance_type)?.label}
                   </div>
-                  <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: 'clamp(18px, 2.5vw, 22px)', fontWeight: '700', marginBottom: 'clamp(8px, 1.5vw, 12px)', color: '#2b2825' }}>
                     {product.title}
                   </h3>
-                  <p style={{ color: '#666', fontSize: '14px', marginBottom: '16px', lineHeight: '1.6' }}>
+                  <p style={{ color: '#5a534e', fontSize: 'clamp(13px, 2vw, 15px)', marginBottom: 'clamp(16px, 2.5vw, 20px)', lineHeight: '1.7' }}>
                     {product.description}
                   </p>
                   <button
                     onClick={() => product.id && handleDelete(product.id)}
                     style={{
-                      padding: '8px 16px',
-                      background: '#dc3545',
+                      padding: 'clamp(8px, 1.5vw, 12px) clamp(16px, 2.5vw, 20px)',
+                      background: '#dc2626',
                       color: 'white',
                       border: 'none',
-                      borderRadius: '6px',
+                      borderRadius: '8px',
                       cursor: 'pointer',
-                      fontSize: '14px'
+                      fontSize: 'clamp(13px, 1.8vw, 15px)',
+                      fontWeight: '500',
+                      transition: 'all 0.3s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#b91c1c';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#dc2626';
                     }}
                   >
                     삭제
@@ -434,4 +553,8 @@ export default function ProductsPage() {
       </div>
     </div>
   );
+}
+
+export default function ProductsPage() {
+  return <AuthGuard><ProductsPageContent /></AuthGuard>;
 }

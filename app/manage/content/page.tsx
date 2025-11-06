@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { ContentEdit } from '@/lib/supabase';
 import Link from 'next/link';
+import AuthGuard from '@/components/admin/AuthGuard';
 
-export default function ContentPage() {
+function ContentPageContent() {
   const [contents, setContents] = useState<ContentEdit[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingItem, setEditingItem] = useState<ContentEdit | null>(null);
@@ -137,90 +138,145 @@ export default function ContentPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header - 모바일 최적화 */}
-      <header className="bg-gray-900 text-white px-4 py-4 md:px-8 md:py-5 shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">✏️ 텍스트 편집</h1>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Link href="/manage" className="text-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition-colors">
+    <div style={{ minHeight: '100vh', background: '#faf8f3' }}>
+      {/* Header */}
+      <header style={{ 
+        background: '#2b2825', 
+        color: '#faf8f3', 
+        padding: 'clamp(16px, 3vw, 24px) clamp(20px, 4vw, 32px)',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <div style={{ maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+          <h1 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: '700', marginBottom: 'clamp(12px, 2vw, 16px)', color: '#faf8f3' }}>✏️ 텍스트 편집</h1>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.5vw, 12px)' }}>
+            <Link href="/manage" style={{ 
+              color: '#2b2825', 
+              textDecoration: 'none', 
+              padding: 'clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px)', 
+              background: '#faf8f3', 
+              borderRadius: '8px',
+              fontSize: 'clamp(13px, 1.8vw, 15px)',
+              fontWeight: '500',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#e8e3d9';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#faf8f3';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+            >
               ← 관리자 홈
             </Link>
-            <Link href="/" className="text-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition-colors">
+            <Link href="/" style={{ 
+              color: '#2b2825', 
+              textDecoration: 'none', 
+              padding: 'clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px)', 
+              background: '#faf8f3', 
+              borderRadius: '8px',
+              fontSize: 'clamp(13px, 1.8vw, 15px)',
+              fontWeight: '500',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#e8e3d9';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#faf8f3';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+            >
               사이트로 돌아가기
             </Link>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8">
+      <div style={{ maxWidth: '1600px', margin: '0 auto', padding: 'clamp(32px, 5vw, 60px) clamp(20px, 4vw, 40px)', width: '100%' }}>
         {/* Info Banner */}
         <div style={{
           background: '#fff3cd',
           border: '1px solid #ffc107',
-          borderRadius: '8px',
-          padding: '16px 20px',
-          marginBottom: '24px',
-          fontSize: '14px',
+          borderRadius: '12px',
+          padding: 'clamp(16px, 2.5vw, 20px) clamp(20px, 3vw, 24px)',
+          marginBottom: 'clamp(24px, 4vw, 32px)',
+          fontSize: 'clamp(13px, 1.8vw, 15px)',
           color: '#856404'
         }}>
           <strong>ℹ️ 안내:</strong> 텍스트를 수정한 후에는 페이지를 새로고침하면 변경사항이 적용됩니다. 줄바꿈은 실제로 엔터(\n)로 입력해주세요.
         </div>
 
         <div style={{ 
-          background: 'white', 
-          borderRadius: '12px', 
-          padding: '32px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+          background: '#ffffff', 
+          borderRadius: '20px', 
+          padding: 'clamp(32px, 5vw, 48px)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.06)'
         }}>
           {loading ? (
-            <p style={{ textAlign: 'center', color: '#666', padding: '40px' }}>로딩 중...</p>
+            <p style={{ textAlign: 'center', color: '#5a534e', padding: 'clamp(40px, 6vw, 60px)', fontSize: 'clamp(14px, 2vw, 16px)' }}>로딩 중...</p>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(32px, 4vw, 40px)' }}>
               {sections.map((section) => (
                 <div key={section.name} style={{ 
-                  border: '2px solid #e0e0e0', 
-                  borderRadius: '12px', 
-                  padding: '24px',
-                  background: '#fafafa'
+                  border: '2px solid #e8e3d9', 
+                  borderRadius: '16px', 
+                  padding: 'clamp(24px, 4vw, 32px)',
+                  background: '#faf8f3'
                 }}>
-                  <h2 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: '#1a1a1a' }}>
+                  <h2 style={{ fontSize: 'clamp(20px, 3vw, 24px)', fontWeight: '700', marginBottom: 'clamp(20px, 3vw, 24px)', color: '#2b2825' }}>
                     {section.label}
                   </h2>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 2.5vw, 20px)' }}>
                     {section.fields.map((field) => {
                       const currentContent = getContent(section.name, field.name);
                       const isEditing = editingItem?.section_name === section.name && editingItem?.field_name === field.name;
                       
                       return (
                         <div key={field.name} style={{ 
-                          background: 'white', 
-                          padding: '16px', 
-                          borderRadius: '8px',
-                          border: '1px solid #e0e0e0'
+                          background: '#ffffff', 
+                          padding: 'clamp(16px, 2.5vw, 20px)', 
+                          borderRadius: '12px',
+                          border: '2px solid #e8e3d9'
                         }}>
                           <div style={{ 
                             display: 'flex', 
                             justifyContent: 'space-between', 
                             alignItems: 'center',
-                            marginBottom: '12px'
+                            marginBottom: 'clamp(12px, 2vw, 16px)',
+                            flexWrap: 'wrap',
+                            gap: '8px'
                           }}>
-                            <label style={{ fontWeight: '600', color: '#495057', fontSize: '15px' }}>
+                            <label style={{ fontWeight: '600', color: '#2b2825', fontSize: 'clamp(14px, 2vw, 16px)' }}>
                               {field.label}
                             </label>
                             {!isEditing && (
                               <button
                                 onClick={() => setEditingItem({ section_name: section.name, field_name: field.name, content: currentContent })}
                                 style={{
-                                  padding: '6px 16px',
-                                  background: '#1a1a1a',
-                                  color: 'white',
+                                  padding: 'clamp(8px, 1.5vw, 10px) clamp(16px, 2.5vw, 20px)',
+                                  background: '#2b2825',
+                                  color: '#faf8f3',
                                   border: 'none',
-                                  borderRadius: '6px',
+                                  borderRadius: '8px',
                                   cursor: 'pointer',
-                                  fontSize: '13px',
-                                  fontWeight: '600'
+                                  fontSize: 'clamp(12px, 1.8vw, 14px)',
+                                  fontWeight: '600',
+                                  transition: 'all 0.3s'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.background = '#1a1715';
+                                  e.currentTarget.style.transform = 'translateY(-2px)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.background = '#2b2825';
+                                  e.currentTarget.style.transform = 'translateY(0)';
                                 }}
                               >
                                 ✏️ 수정
@@ -237,13 +293,14 @@ export default function ContentPage() {
                                   rows={4}
                                   style={{
                                     width: '100%',
-                                    padding: '12px',
-                                    border: '2px solid #1a1a1a',
-                                    borderRadius: '6px',
-                                    fontSize: '14px',
-                                    marginBottom: '12px',
+                                    padding: 'clamp(12px, 2vw, 16px)',
+                                    border: '2px solid #2b2825',
+                                    borderRadius: '8px',
+                                    fontSize: 'clamp(14px, 2vw, 16px)',
+                                    marginBottom: 'clamp(12px, 2vw, 16px)',
                                     resize: 'vertical',
-                                    fontFamily: 'inherit'
+                                    fontFamily: 'inherit',
+                                    color: '#2b2825'
                                   }}
                                 />
                               ) : (
@@ -253,27 +310,37 @@ export default function ContentPage() {
                                   onChange={(e) => setEditingItem({ ...editingItem, content: e.target.value })}
                                   style={{
                                     width: '100%',
-                                    padding: '12px',
-                                    border: '2px solid #1a1a1a',
-                                    borderRadius: '6px',
-                                    fontSize: '14px',
-                                    marginBottom: '12px',
-                                    fontFamily: 'inherit'
+                                    padding: 'clamp(12px, 2vw, 16px)',
+                                    border: '2px solid #2b2825',
+                                    borderRadius: '8px',
+                                    fontSize: 'clamp(14px, 2vw, 16px)',
+                                    marginBottom: 'clamp(12px, 2vw, 16px)',
+                                    fontFamily: 'inherit',
+                                    color: '#2b2825'
                                   }}
                                 />
                               )}
-                              <div style={{ display: 'flex', gap: '8px' }}>
+                              <div style={{ display: 'flex', gap: 'clamp(8px, 1.5vw, 12px)', flexWrap: 'wrap' }}>
                                 <button
                                   onClick={() => handleSave(section.name, field.name, editingItem.content)}
                                   style={{
-                                    padding: '10px 20px',
+                                    padding: 'clamp(10px, 2vw, 12px) clamp(20px, 3vw, 24px)',
                                     background: '#28a745',
                                     color: 'white',
                                     border: 'none',
-                                    borderRadius: '6px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
-                                    fontSize: '14px',
-                                    fontWeight: '600'
+                                    fontSize: 'clamp(13px, 1.8vw, 15px)',
+                                    fontWeight: '600',
+                                    transition: 'all 0.3s'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#218838';
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = '#28a745';
+                                    e.currentTarget.style.transform = 'translateY(0)';
                                   }}
                                 >
                                   💾 저장
@@ -281,14 +348,23 @@ export default function ContentPage() {
                                 <button
                                   onClick={() => setEditingItem(null)}
                                   style={{
-                                    padding: '10px 20px',
-                                    background: '#6c757d',
+                                    padding: 'clamp(10px, 2vw, 12px) clamp(20px, 3vw, 24px)',
+                                    background: '#5a534e',
                                     color: 'white',
                                     border: 'none',
-                                    borderRadius: '6px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
-                                    fontSize: '14px',
-                                    fontWeight: '600'
+                                    fontSize: 'clamp(13px, 1.8vw, 15px)',
+                                    fontWeight: '600',
+                                    transition: 'all 0.3s'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#2b2825';
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = '#5a534e';
+                                    e.currentTarget.style.transform = 'translateY(0)';
                                   }}
                                 >
                                   ❌ 취소
@@ -297,12 +373,12 @@ export default function ContentPage() {
                             </div>
                           ) : (
                             <div style={{ 
-                              padding: '12px', 
-                              background: '#f8f9fa', 
-                              borderRadius: '6px',
-                              color: '#212529',
-                              fontSize: '14px',
-                              lineHeight: '1.6',
+                              padding: 'clamp(12px, 2vw, 16px)', 
+                              background: '#faf8f3', 
+                              borderRadius: '8px',
+                              color: '#5a534e',
+                              fontSize: 'clamp(14px, 2vw, 16px)',
+                              lineHeight: '1.7',
                               minHeight: '50px',
                               whiteSpace: 'pre-wrap',
                               fontFamily: 'inherit'
@@ -322,4 +398,8 @@ export default function ContentPage() {
       </div>
     </div>
   );
+}
+
+export default function ContentPage() {
+  return <AuthGuard><ContentPageContent /></AuthGuard>;
 }

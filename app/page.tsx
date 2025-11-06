@@ -12,14 +12,14 @@ export default function Home() {
   return (
     <div style={{ width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
       <Header />
-      <main style={{ width: '100%', maxWidth: '100vw', overflowX: 'hidden', marginTop: '4rem' }}>
-        <HeroSectionUpgraded />
-        <ProcessSectionUpgraded />
-        <TestimonialsSectionUpgraded />
-        <PromiseSection />
-        <ServicesSectionUpgraded />
-        <StatsSectionUpgraded />
-        <ContactSectionUpgraded />
+      <main style={{ width: '100%', maxWidth: '100vw', overflowX: 'hidden', marginTop: 0 }}>
+        <div id="hero"><HeroSectionUpgraded /></div>
+        <div id="process"><ProcessSectionUpgraded /></div>
+        <div id="testimonials"><TestimonialsSectionUpgraded /></div>
+        <div id="promise"><PromiseSection /></div>
+        <div id="services"><ServicesSectionUpgraded /></div>
+        <div id="stats"><StatsSectionUpgraded /></div>
+        <div id="contact"><ContactSectionUpgraded /></div>
       </main>
       <Footer />
     </div>

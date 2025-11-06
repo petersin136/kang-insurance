@@ -21,7 +21,7 @@ export default function HeroSectionUpgraded() {
   // 스크롤 효과 제거 - 항상 보이게
   const opacity = useTransform(scrollY, [0, 400], [1, 1]);
   const scale = useTransform(scrollY, [0, 400], [1, 1]);
-
+  
   // Supabase에서 텍스트 가져오기
   useEffect(() => {
     const fetchContent = async () => {
@@ -55,7 +55,7 @@ export default function HeroSectionUpgraded() {
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#faf8f3]" style={{ width: '100%', maxWidth: '100vw' }}>
       {/* 배너 이미지 - 최상단 (원본 비율 유지) */}
       <motion.div 
-        style={{ opacity: opacity }}
+        style={{ opacity: opacity, paddingTop: 'clamp(3rem, 8vw, 4rem)' }}
         className="relative w-full overflow-hidden bg-gray-900"
       >
         {/* 모바일 전용 이미지 */}
@@ -84,7 +84,7 @@ export default function HeroSectionUpgraded() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[16px] md:text-[19px] font-light tracking-[0.35em] uppercase text-[#a68a64] mb-12"
+            className="text-[16px] md:text-[19px] font-light tracking-[0.15em] md:tracking-[0.35em] uppercase text-[#a68a64] mb-12 leading-[1.8] md:leading-normal"
           >
             Insurance Designed For You
           </motion.div>

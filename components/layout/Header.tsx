@@ -10,8 +10,8 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
-  // 헤더 높이 고정 (크기 변화 없음)
-  const headerHeight = '4rem';
+  // 헤더 높이 고정 (모바일에서는 더 얇게)
+  const headerHeight = 'clamp(3rem, 8vw, 4rem)';
   
   const headerBg = useTransform(
     scrollY,
@@ -41,12 +41,28 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: '회사소개', href: '#about' },
-    { label: '보험상품', href: '#services' },
-    { label: '가입절차', href: '#process' },
-    { label: '고객후기', href: '#testimonials' },
-    { label: '상담문의', href: '#contact' },
+    { label: '상담 프로세스', href: '#process' },
+    { label: '고객 후기', href: '#testimonials' },
+    { label: '보험 상품', href: '#services' },
+    { label: '상담 신청', href: '#contact' },
   ];
+
+  // 스크롤 이동 핸들러
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const headerOffset = 80; // 헤더 높이 고려
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <motion.header
@@ -57,7 +73,7 @@ export default function Header() {
       }}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md"
     >
-      <div className="h-full px-6 md:px-12 max-w-screen-2xl mx-auto">
+      <div className="h-full max-w-screen-2xl mx-auto" style={{ paddingLeft: 'clamp(32px, 8vw, 48px)', paddingRight: 'clamp(32px, 8vw, 48px)' }}>
         <div className="flex items-center justify-center h-full w-full relative">
           {/* 로고 - 왼쪽 고정 */}
           <Link 
@@ -81,23 +97,25 @@ export default function Header() {
             className="hidden md:flex items-center gap-10"
           >
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
-                className="text-[16px] font-semibold tracking-wide text-white hover:text-gray-300 transition-colors duration-300 drop-shadow-lg whitespace-nowrap"
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-[16px] font-semibold tracking-wide text-white hover:text-gray-300 transition-colors duration-300 drop-shadow-lg whitespace-nowrap cursor-pointer"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </motion.nav>
 
           {/* 모바일: 로고(왼쪽) + 햄버거(오른쪽) */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <Link 
+            <Link
               href="https://primeasset.kr/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="z-50 ml-6"
+              className="z-50"
+              style={{ marginLeft: 0 }}
             >
               <img 
                 src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
@@ -106,17 +124,18 @@ export default function Header() {
               />
             </Link>
 
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-white drop-shadow-lg"
-              aria-label="메뉴"
-            >
-              {isMobileMenuOpen ? (
+            aria-label="메뉴"
+            style={{ marginRight: 0, transform: 'translateX(2px)' }}
+          >
+            {isMobileMenuOpen ? (
                 <X className="w-9 h-9" strokeWidth={2.5} />
-              ) : (
+            ) : (
                 <Menu className="w-9 h-9" strokeWidth={2.5} />
-              )}
-            </button>
+            )}
+          </button>
           </div>
         </div>
 
@@ -146,14 +165,14 @@ export default function Header() {
               </div>
 
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-4 text-lg font-semibold tracking-wide text-center text-white hover:text-gray-300 transition-colors border-b border-gray-700/50 last:border-0"
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="py-4 text-lg font-semibold tracking-wide text-center text-white hover:text-gray-300 transition-colors border-b border-gray-700/50 last:border-0 cursor-pointer"
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </nav>
           </motion.div>
