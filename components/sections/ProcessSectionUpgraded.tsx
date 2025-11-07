@@ -8,25 +8,25 @@ const steps = [
     number: '01',
     title: '상담 신청',
     description: '24시간 내 전화 연락',
-    details: '홈페이지나 전화로 간편하게 상담 신청하시면, 24시간 내에 전담 설계사가 직접 연락드립니다. 간단한 정보 동의만 해주시면 바로 분석이 시작됩니다.'
+    details: '신청 후 24시간 안에 담당 설계사가 바로 전화를 드립니다.'
   },
   {
     number: '02',
     title: '무료 보장분석',
     description: '현재 가입된 모든 보험 꼼꼼히 체크',
-    details: '본인도 모르고 있었던 보험까지 빠짐없이 확인합니다. 중복된 보장, 부족한 보장, 불필요한 특약을 꼼꼼하게 체크하여 현재 상황을 명확하게 파악해드립니다. 완전 무료입니다!'
+    details: '중복·부족 보장을 한 번에 점검해 현재 상황을 명확히 알려드립니다.'
   },
   {
     number: '03',
     title: '맞춤 보고서 제공',
     description: '무료 분석 보고서 제공',
-    details: '현재 보장 내역을 한눈에 볼 수 있는 분석 보고서를 무료로 드립니다. 어떤 보장을 얼마나 받는지 명확히 알 수 있고, 더 좋은 방향이 있다면 부담 없는 개선 제안서도 함께 드립니다.'
+    details: '맞춤 분석 보고서를 무료로 전달해 드리고 개선 방향까지 제안합니다.'
   },
   {
     number: '04',
     title: '최적화 실행',
     description: '보험료는 줄이고 보장은 늘리고',
-    details: '불필요한 부분은 정리하고, 나이와 상황에 맞는 필요한 보장은 늘립니다. 매달 내는 보험료는 오히려 줄어들고, 정리 시 발생하는 환급금도 돌려받으실 수 있습니다. 평생 관리해드립니다!'
+    details: '보험료는 줄이고 필요한 보장은 키워 평생 관리까지 이어드립니다.'
   }
 ];
 
@@ -54,11 +54,12 @@ export default function ProcessSectionUpgraded() {
           {/* 눈길 끄는 메인 카피 */}
           <div style={{
             display: 'inline-block',
-            background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-            padding: 'clamp(10px, 1.8vw, 16px) clamp(18px, 3.5vw, 36px)',
-            borderRadius: '50px',
-            marginBottom: 'clamp(12px, 2vw, 16px)',
-            boxShadow: '0 10px 40px rgba(59, 130, 246, 0.3)',
+            background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
+            padding: 'clamp(18px, 3vw, 32px) clamp(32px, 5.5vw, 72px)',
+            borderRadius: '64px',
+            marginBottom: 'clamp(16px, 2.5vw, 22px)',
+            boxShadow: '0 18px 45px rgba(15, 23, 42, 0.12)',
+            border: '1px solid #e5e7eb',
             transform: 'scale(1)',
             transition: 'transform 0.3s ease'
           }}
@@ -66,13 +67,13 @@ export default function ProcessSectionUpgraded() {
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
             <p style={{ 
-              fontSize: 'clamp(16px, 3.5vw, 32px)', 
+              fontSize: 'clamp(20px, 4.8vw, 42px)', 
               fontWeight: '800',
-              color: '#ffffff',
+              color: '#1a1a1a',
               margin: 0,
               display: 'flex',
               alignItems: 'center',
-              gap: 'clamp(8px, 1.5vw, 12px)',
+              gap: 'clamp(10px, 2vw, 16px)',
               justifyContent: 'center',
               flexWrap: 'wrap'
             }}>
@@ -80,9 +81,9 @@ export default function ProcessSectionUpgraded() {
               <span style={{
                 background: '#fbbf24',
                 color: '#78350f',
-                padding: 'clamp(3px, 0.8vw, 4px) clamp(12px, 2.5vw, 16px)',
-                borderRadius: '20px',
-                fontSize: 'clamp(12px, 2.2vw, 20px)',
+                padding: 'clamp(6px, 1.4vw, 8px) clamp(16px, 3vw, 22px)',
+                borderRadius: '999px',
+                fontSize: 'clamp(16px, 3.2vw, 24px)',
                 fontWeight: '900'
               }}>
                 100% 무료
@@ -219,7 +220,7 @@ export default function ProcessSectionUpgraded() {
                   display: 'inline-block',
                   padding: 'clamp(5px, 1vw, 6px) clamp(10px, 2vw, 14px)',
                   background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                  borderRadius: '20px',
+                  borderRadius: '16px',
                   marginBottom: 'clamp(10px, 1.5vw, 12px)'
                 }}>
                   <p style={{
@@ -234,9 +235,10 @@ export default function ProcessSectionUpgraded() {
 
                 {/* 상세 내용 */}
                 <p style={{
-                  fontSize: 'clamp(13px, 2.2vw, 17px)',
-                  color: '#4b5563',
-                  lineHeight: '1.7',
+                  fontSize: 'clamp(16px, 2.8vw, 22px)',
+                  color: '#1f2937',
+                  lineHeight: '1.5',
+                  fontWeight: 600,
                   margin: 0
                 }}>
                   {step.details}
@@ -253,53 +255,53 @@ export default function ProcessSectionUpgraded() {
           transition={{ duration: 0.6, delay: 0.8 }}
           style={{
             marginTop: 'clamp(30px, 5vw, 70px)',
-            padding: 'clamp(24px, 4vw, 45px) clamp(20px, 4vw, 70px)',
+            padding: 'clamp(18px, 3vw, 32px) clamp(16px, 3vw, 48px)',
             background: '#ffffff',
             borderRadius: '20px',
             border: '1px solid #e5e7eb',
             boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)'
           }}
         >
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
             <p style={{
-              fontSize: 'clamp(18px, 3.5vw, 30px)',
+              fontSize: 'clamp(15px, 2.6vw, 22px)',
               fontWeight: '800',
-              color: '#1a1a1a',
-              marginBottom: 'clamp(18px, 3vw, 26px)',
-              lineHeight: '1.5',
+              color: '#111827',
+              marginBottom: 'clamp(16px, 2.5vw, 22px)',
+              lineHeight: '1.4',
               textAlign: 'center'
             }}>
               ✨ 부담 없이 신청하세요!
             </p>
             <p style={{
-              fontSize: 'clamp(14px, 2.8vw, 22px)',
-              color: '#1a1a1a',
-              fontWeight: '400',
-              lineHeight: '1.7',
-              marginBottom: 'clamp(16px, 2.5vw, 22px)',
-              textAlign: 'left'
+              fontSize: 'clamp(15px, 2.6vw, 22px)',
+              color: '#111827',
+              fontWeight: 600,
+              lineHeight: '1.5',
+              marginBottom: 'clamp(14px, 2.2vw, 18px)',
+              textAlign: 'center'
             }}>
-              홈페이지나 전화로 간편하게 상담 신청하시면, <span style={{ color: '#ef4444', fontWeight: '800' }}>24시간 내에 전화 연락</span> 드립니다. 단 한 번의 통화만으로 바로 분석이 시작됩니다.
+              신청만 남기면 <span style={{ color: '#ef4444', fontWeight: '800' }}>24시간 내 바로 연락</span> 드리고 한 통화로 분석을 시작합니다.
             </p>
             <p style={{
-              fontSize: 'clamp(14px, 2.8vw, 20px)',
-              color: '#1a1a1a',
-              fontWeight: '400',
-              marginBottom: 'clamp(16px, 2.5vw, 22px)',
-              lineHeight: '1.7',
-              textAlign: 'left'
+              fontSize: 'clamp(15px, 2.6vw, 22px)',
+              color: '#111827',
+              fontWeight: 600,
+              lineHeight: '1.5',
+              marginBottom: 'clamp(14px, 2.2vw, 18px)',
+              textAlign: 'center'
             }}>
-              본인도 모르고 있었던 보험까지 꼼꼼하게 체크하여 현재 상황에 맞는 <span style={{ fontWeight: '800', color: '#ef4444' }}>최고의 보장 내역을 분석</span>해드립니다.
+              숨은 보험까지 정리해 <span style={{ fontWeight: '800', color: '#ef4444' }}>최적 보장 플랜</span>만 남겨드립니다.
             </p>
             <p style={{
-              fontSize: 'clamp(14px, 2.8vw, 20px)',
-              color: '#1a1a1a',
-              fontWeight: '400',
+              fontSize: 'clamp(15px, 2.6vw, 22px)',
+              color: '#1f2937',
+              fontWeight: 600,
+              lineHeight: '1.5',
               margin: 0,
-              lineHeight: '1.7',
-              textAlign: 'left'
+              textAlign: 'center'
             }}>
-              📧 맞춤 보고서 제공 후, <span style={{ fontWeight: '800', color: '#3b82f6' }}>대면 미팅 또는 서면(메일)</span> 중 원하시는 방식으로 편하게 받아보실 수 있습니다.
+              📧 보고서는 <span style={{ fontWeight: '800', color: '#3b82f6' }}>대면·메일</span> 중 편한 방식으로 전달드립니다.
             </p>
           </div>
         </motion.div>

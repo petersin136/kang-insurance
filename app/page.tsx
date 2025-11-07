@@ -4,6 +4,7 @@ import HeroSectionUpgraded from '@/components/sections/HeroSectionUpgraded';
 import PromiseSection from '@/components/sections/PromiseSection';
 import ProcessSectionUpgraded from '@/components/sections/ProcessSectionUpgraded';
 import StatsSectionUpgraded from '@/components/sections/StatsSectionUpgraded';
+import TestimonialsSectionUpgraded from '@/components/sections/TestimonialsSectionUpgraded';
 import ContactSectionUpgraded from '@/components/sections/ContactSectionUpgraded';
 import RecruitingSection from '@/components/sections/RecruitingSection';
 
@@ -16,6 +17,7 @@ export default function Home() {
         <div id="process"><ProcessSectionUpgraded /></div>
         <div id="promise"><PromiseSection /></div>
         <div id="stats"><StatsSectionUpgraded /></div>
+        <div id="testimonials"><TestimonialsSectionUpgraded /></div>
         <div id="contact"><ContactSectionUpgraded /></div>
         <div id="recruiting"><RecruitingSection /></div>
       </main>

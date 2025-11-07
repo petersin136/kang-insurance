@@ -20,9 +20,27 @@ export default function ContactSectionUpgraded() {
   
   // 텍스트 상태 관리
   const [content, setContent] = useState({
-    title: '무료 상담 신청',
+    title: '보장 내역 정리 서비스 신청',
     subtitle: '지금 바로 상담을 신청하세요. 24시간 이내 연락드리겠습니다'
   });
+
+  const subtitleText = isMobile
+    ? (content.subtitle ? content.subtitle.replace(/\.\s+/, '.\n') : '')
+    : content.subtitle;
+
+  const sectionPadding = isMobile ? '32px 0' : 'clamp(40px, 6vw, 60px) 0';
+  const containerPadding = isMobile ? '0 16px' : '0 24px';
+  const headingSpacing = isMobile ? '24px' : 'clamp(30px, 4vw, 40px)';
+  const labelFontSize = isMobile ? '14px' : '15px';
+  const labelMarginBottom = isMobile ? '8px' : '10px';
+  const inputPadding = isMobile ? '12px 14px' : '14px 16px';
+  const inputFontSize = isMobile ? '14px' : '15px';
+  const controlGap = isMobile ? '14px' : '18px';
+  const privacyPadding = isMobile ? '14px' : '16px';
+  const privacyMarginBottom = isMobile ? '16px' : '20px';
+  const buttonPadding = isMobile ? '14px 24px' : '16px 28px';
+  const buttonFontSize = isMobile ? '15px' : '16px';
+  const helperFontSize = isMobile ? '13px' : '14px';
 
   // 화면 크기 감지
   useEffect(() => {
@@ -47,7 +65,12 @@ export default function ContactSectionUpgraded() {
         const newContent = { ...content };
         data.forEach((item) => {
           if (item.field_name === 'title') {
-            newContent.title = item.content;
+            const value = (item.content || '').trim();
+            if (value && value !== '무료 상담 신청') {
+              newContent.title = value;
+            } else {
+              newContent.title = '보장 내역 정리 서비스 신청';
+            }
           } else if (item.field_name === 'subtitle') {
             newContent.subtitle = item.content;
           }
@@ -98,140 +121,55 @@ export default function ContactSectionUpgraded() {
     <section 
       ref={ref} 
       style={{ 
-        padding: 'clamp(40px, 6vw, 60px) 0', 
+        padding: sectionPadding, 
         background: 'linear-gradient(180deg, #fbf8f3 0%, #f8f5f0 100%)',
         width: '100%', 
         overflow: 'hidden' 
       }} 
       id="contact"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', width: '100%' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: containerPadding, width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          style={{ textAlign: 'center', marginBottom: 'clamp(30px, 4vw, 40px)' }}
+          style={{ textAlign: 'center', marginBottom: headingSpacing }}
         >
           <h2 style={{ 
-            fontSize: 'clamp(32px, 5vw, 56px)', 
+            fontSize: isMobile ? 'clamp(24px, 7vw, 32px)' : 'clamp(32px, 4vw, 56px)', 
             fontWeight: '700', 
             color: '#2b2825', 
             marginBottom: '20px',
-            letterSpacing: '-1px',
-            lineHeight: '1.2'
+            letterSpacing: isMobile ? '-0.5px' : '-1px',
+            lineHeight: isMobile ? '1.1' : '1.2'
           }}>
             {content.title}
           </h2>
           <p style={{ 
             fontSize: 'clamp(16px, 2.5vw, 20px)', 
             color: '#5a534e',
-            lineHeight: '1.6'
+            lineHeight: '1.6',
+            whiteSpace: 'pre-line'
           }}>
-            {content.subtitle}
+            {subtitleText || ''}
           </p>
         </motion.div>
 
         <form onSubmit={handleSubmit} style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          {/* 상단: 연락처 정보 (왼쪽) + 이름/연락처/이메일 (오른쪽) */}
-          <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-            gap: 'clamp(30px, 4vw, 40px)', 
-            marginBottom: '30px'
-          }}>
-            {/* 연락처 정보 - 왼쪽 */}
+          {/* 기본 정보 입력 */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
-          >
-            <div>
-                <h3 style={{ 
-                  fontSize: 'clamp(22px, 3vw, 24px)', 
-                  fontWeight: '700', 
-                  color: '#2b2825', 
-                  marginBottom: '20px',
-                  letterSpacing: '-0.5px'
-                }}>
-                연락처 정보
-              </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                    <div style={{ 
-                      width: '48px', 
-                      height: '48px', 
-                      background: '#eae5dd', 
-                      borderRadius: '50%', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <Phone style={{ width: '20px', height: '20px', color: '#4a90e2' }} />
-                  </div>
-                  <div>
-                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>전화</div>
-                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>T. 033-763-9785</div>
-                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>M. 010-4111-5552</div>
-                  </div>
-                </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                    <div style={{ 
-                      width: '56px', 
-                      height: '56px', 
-                      background: '#eae5dd', 
-                      borderRadius: '50%', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <Mail style={{ width: '20px', height: '20px', color: '#4a90e2' }} />
-                  </div>
-                  <div>
-                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>이메일</div>
-                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>kangsh6917@naver.com</div>
-                  </div>
-                </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                    <div style={{ 
-                      width: '56px', 
-                      height: '56px', 
-                      background: '#eae5dd', 
-                      borderRadius: '50%', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <MapPin style={{ width: '20px', height: '20px', color: '#4a90e2' }} />
-                  </div>
-                  <div>
-                      <div style={{ fontWeight: '600', color: '#2b2825', fontSize: '16px', marginBottom: '6px' }}>주소</div>
-                      <div style={{ color: '#5a534e', fontSize: '15px', lineHeight: '1.6' }}>강원특별자치도 원주시 능라동길65, 803호<br />(유포타워 8층)</div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </motion.div>
-
-            {/* 이름, 연락처, 이메일 입력 - 오른쪽 */}
-            <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}
+            style={{ display: 'flex', flexDirection: 'column', gap: controlGap, marginBottom: isMobile ? '24px' : '30px' }}
           >
             <div>
                 <label style={{ 
                   display: 'block', 
-                  fontSize: '15px', 
+                  fontSize: labelFontSize, 
                   fontWeight: '600', 
                   color: '#2b2825', 
-                  marginBottom: '10px',
+                  marginBottom: labelMarginBottom,
                   letterSpacing: '0.3px'
                 }}>
                 이름 *
@@ -243,11 +181,11 @@ export default function ContactSectionUpgraded() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: inputPadding,
                     background: '#ffffff',
                     border: '1px solid #d9d0c4',
                     borderRadius: '12px',
-                    fontSize: '15px',
+                    fontSize: inputFontSize,
                     color: '#111827',
                     outline: 'none',
                     transition: 'all 0.3s ease'
@@ -267,10 +205,10 @@ export default function ContactSectionUpgraded() {
             <div>
                 <label style={{ 
                   display: 'block', 
-                  fontSize: '15px', 
+                  fontSize: labelFontSize, 
                   fontWeight: '600', 
                   color: '#2b2825', 
-                  marginBottom: '10px',
+                  marginBottom: labelMarginBottom,
                   letterSpacing: '0.3px'
                 }}>
                 연락처 *
@@ -282,11 +220,11 @@ export default function ContactSectionUpgraded() {
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: inputPadding,
                     background: '#ffffff',
                     border: '1px solid #d9d0c4',
                     borderRadius: '12px',
-                    fontSize: '15px',
+                    fontSize: inputFontSize,
                     color: '#111827',
                     outline: 'none',
                     transition: 'all 0.3s ease'
@@ -306,10 +244,10 @@ export default function ContactSectionUpgraded() {
             <div>
                 <label style={{ 
                   display: 'block', 
-                  fontSize: '15px', 
+                  fontSize: labelFontSize, 
                   fontWeight: '600', 
                   color: '#2b2825', 
-                  marginBottom: '10px',
+                  marginBottom: labelMarginBottom,
                   letterSpacing: '0.3px'
                 }}>
                 이메일
@@ -320,11 +258,11 @@ export default function ContactSectionUpgraded() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '14px 16px',
+                    padding: inputPadding,
                     background: '#ffffff',
                     border: '1px solid #d9d0c4',
                     borderRadius: '12px',
-                    fontSize: '15px',
+                    fontSize: inputFontSize,
                     color: '#111827',
                     outline: 'none',
                     transition: 'all 0.3s ease'
@@ -341,21 +279,20 @@ export default function ContactSectionUpgraded() {
                 />
               </div>
             </motion.div>
-            </div>
 
           {/* 하단: 상담 내용 (전체 너비) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ marginBottom: '24px' }}
+            style={{ marginBottom: isMobile ? '20px' : '24px' }}
           >
             <label style={{ 
               display: 'block', 
-              fontSize: '15px', 
+              fontSize: labelFontSize, 
               fontWeight: '600', 
               color: '#2b2825', 
-              marginBottom: '10px',
+              marginBottom: labelMarginBottom,
               letterSpacing: '0.3px'
             }}>
                 상담 내용
@@ -363,14 +300,14 @@ export default function ContactSectionUpgraded() {
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              rows={4}
+              rows={isMobile ? 3 : 4}
               style={{
                 width: '100%',
-                padding: '14px 16px',
+                padding: inputPadding,
                 background: '#ffffff',
                 border: '1px solid #d9d0c4',
                 borderRadius: '12px',
-                fontSize: '15px',
+                fontSize: inputFontSize,
                 color: '#111827',
                 outline: 'none',
                 resize: 'none',
@@ -399,8 +336,8 @@ export default function ContactSectionUpgraded() {
               background: '#ffffff',
               border: '1px solid #e0e7ef',
               borderRadius: '12px',
-              padding: '16px',
-              marginBottom: '20px',
+              padding: privacyPadding,
+              marginBottom: privacyMarginBottom,
               boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
             }}
           >
@@ -424,7 +361,7 @@ export default function ContactSectionUpgraded() {
                   }}
                 />
                 <span style={{ 
-                  fontSize: '14px', 
+                  fontSize: helperFontSize, 
                   color: '#2b2825', 
                   lineHeight: '1.6',
                   flex: 1
@@ -439,7 +376,7 @@ export default function ContactSectionUpgraded() {
                       color: '#4a90e2',
                       textDecoration: 'underline',
                       cursor: 'pointer',
-                      fontSize: '14px',
+                      fontSize: helperFontSize,
                       marginLeft: '8px',
                       padding: 0
                     }}
@@ -566,10 +503,10 @@ export default function ContactSectionUpgraded() {
               type="submit"
               style={{
                 width: '100%',
-                padding: '16px 28px',
+                padding: buttonPadding,
                 background: 'linear-gradient(135deg, #4a90e2 0%, #357abd 100%)',
                 color: '#ffffff',
-                fontSize: '16px',
+                fontSize: buttonFontSize,
                 fontWeight: '700',
                 borderRadius: '12px',
                 border: 'none',
@@ -579,7 +516,7 @@ export default function ContactSectionUpgraded() {
                 justifyContent: 'center',
                 gap: '10px',
                 transition: 'all 0.3s ease',
-                marginBottom: '10px'
+                marginBottom: isMobile ? '8px' : '10px'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'linear-gradient(135deg, #357abd 0%, #2a5f8f 100%)';
@@ -592,12 +529,12 @@ export default function ContactSectionUpgraded() {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <Send style={{ width: '20px', height: '20px', color: '#ffffff' }} />
+              <Send style={{ width: isMobile ? '18px' : '20px', height: isMobile ? '18px' : '20px', color: '#ffffff' }} />
               상담 신청하기
             </button>
 
             <p style={{ 
-              fontSize: '14px', 
+              fontSize: helperFontSize, 
               color: '#5a534e', 
               textAlign: 'center',
               lineHeight: '1.5'

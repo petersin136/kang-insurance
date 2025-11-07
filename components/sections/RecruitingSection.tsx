@@ -101,8 +101,11 @@ export default function RecruitingSection() {
     gender: '',
     birthDate: '',
     email: '',
-    message: ''
+    message: '',
+    agreed: false
   });
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
 
   useEffect(() => {
     const checkMobile = () => {
@@ -115,8 +118,13 @@ export default function RecruitingSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.agreed) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      return;
+    }
     alert('상담 신청이 접수되었습니다! 곧 연락드리겠습니다.');
-    setFormData({ name: '', phone: '', gender: '', birthDate: '', email: '', message: '' });
+    setFormData({ name: '', phone: '', gender: '', birthDate: '', email: '', message: '', agreed: false });
+    setShowPrivacy(false);
   };
 
   return (
@@ -676,6 +684,72 @@ export default function RecruitingSection() {
                   onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
                   placeholder="궁금한 점이나 문의사항을 입력하세요"
                 />
+              </div>
+
+              <div style={{
+                background: '#f9fafb',
+                border: '1px solid #e5e7eb',
+                borderRadius: '12px',
+                padding: '14px',
+                marginTop: '4px'
+              }}>
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  cursor: 'pointer'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={formData.agreed}
+                    onChange={(e) => setFormData({ ...formData, agreed: e.target.checked })}
+                    style={{
+                      width: '18px',
+                      height: '18px',
+                      marginTop: '2px',
+                      flexShrink: 0
+                    }}
+                  />
+                  <span style={{ fontSize: 'clamp(12px, 1.6vw, 14px)', color: '#1f2937', lineHeight: '1.6', flex: 1 }}>
+                    <strong>개인정보 수집 및 이용에 동의합니다.</strong> (필수)
+                    <button
+                      type="button"
+                      onClick={() => setShowPrivacy(!showPrivacy)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#2563eb',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        fontSize: 'clamp(12px, 1.6vw, 14px)',
+                        marginLeft: '8px',
+                        padding: 0
+                      }}
+                    >
+                      {showPrivacy ? '닫기' : '내용 보기'}
+                    </button>
+                  </span>
+                </label>
+
+                {showPrivacy && (
+                  <div style={{
+                    marginTop: '12px',
+                    padding: '12px',
+                    background: '#ffffff',
+                    borderRadius: '8px',
+                    border: '1px solid #e5e7eb',
+                    maxHeight: '240px',
+                    overflowY: 'auto',
+                    fontSize: 'clamp(11px, 1.5vw, 13px)',
+                    color: '#4b5563',
+                    lineHeight: '1.7'
+                  }}>
+                    <p style={{ marginBottom: '10px', fontWeight: '700', color: '#1f2937' }}>개인정보 수집 및 이용에 대한 안내</p>
+                    <ul style={{ paddingLeft: '16px', marginBottom: '8px' }}><li>수집 목적: 상담, 견적 안내, 계약 진행 및 고객 응대</li><li>수집 항목: 이름, 연락처, 성별, 생년월일, 이메일, 문의 내용</li><li>보유 기간: 상담 완료일로부터 최대 3년 (관련 법령에 따른 보존기간 포함)</li></ul>
+                    <p style={{ marginBottom: '6px' }}>※ 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 제공이 제한될 수 있습니다.</p>
+                    <p style={{ fontSize: '11px', color: '#9ca3af' }}>문의: 033-763-9785 / kangsh6917@naver.com</p>
+                  </div>
+                )}
               </div>
 
               <button

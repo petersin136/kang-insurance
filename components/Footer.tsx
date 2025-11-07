@@ -52,7 +52,7 @@ export default function Footer() {
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(13px, 1.7vw, 16px)', fontSize: 'clamp(15px, 2vw, 17px)', color: '#5a534e', lineHeight: '1.8', alignItems: 'center' }}>
               <p style={{ fontWeight: '600', color: '#4a4540', fontSize: 'clamp(16px, 2.2vw, 18px)' }}>
-                손해 생명보험 총괄대리인
+                손해 생명보험 총괄대리인 강성현
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 1vw, 11px)', alignItems: 'center' }}>
                 <p>T. 033-763-9785</p>
@@ -88,17 +88,6 @@ export default function Footer() {
                   onMouseLeave={(e) => e.currentTarget.style.color = '#5a534e'}
                 >
                   고객 후기
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#services" 
-                  onClick={(e) => handleNavClick(e, '#services')}
-                  style={{ color: '#5a534e', cursor: 'pointer', display: 'block', transition: 'color 0.3s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#2b2825'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#5a534e'}
-                >
-                  보험 상품
                 </a>
               </li>
               <li>
@@ -212,7 +201,7 @@ export default function Footer() {
               color: '#5a534e',
               marginBottom: 'clamp(8px, 1.5vw, 12px)'
             }}>
-              손해 생명보험 총괄대리인
+              손해 생명보험 총괄대리인 강성현
             </p>
             <div style={{ 
               display: 'flex', 

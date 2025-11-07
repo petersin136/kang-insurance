@@ -43,7 +43,6 @@ export default function Header() {
   const navItems = [
     { label: '상담 프로세스', href: '#process' },
     { label: '고객 후기', href: '#testimonials' },
-    { label: '보험 상품', href: '#services' },
     { label: '상담 신청', href: '#contact' },
     { label: '함께하기', href: '#recruiting' },
   ];

@@ -60,13 +60,13 @@ export default function HeroSectionUpgraded() {
       >
         {/* 모바일 전용 이미지 */}
         <img 
-          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/333.jpg"
+          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/fi.jpg"
           alt="프라임에셋 배너"
           className="block w-full h-auto md:hidden"
         />
         {/* 데스크톱 전용 이미지 */}
         <img 
-          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/Black%20and%20Gray%20Minimalist%20Shapes%20Personal%20Profile%20LinkedIn%20Banner%20(1).png"
+          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/fi.jpg"
           alt="프라임에셋 배너"
           className="hidden w-full h-auto md:block"
         />
