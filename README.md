@@ -179,6 +179,67 @@ npm run build
 vercel --prod
 ```
 
+## ⏰ Supabase 자동 일시중지 방지
+
+Supabase 무료 플랜은 7일간 비활성 상태가 지속되면 프로젝트가 자동으로 일시중지됩니다. 이를 방지하기 위해 GitHub Actions 워크플로우가 설정되어 있습니다.
+
+### 자동 실행 스케줄
+
+- **실행 주기**: 매주 월요일, 목요일 오전 9시(UTC)
+- **동작**: Supabase 데이터베이스에 간단한 SELECT 쿼리 실행
+- **효과**: 프로젝트를 활성 상태로 유지하여 자동 일시중지 방지
+
+### GitHub Secrets 설정 방법
+
+워크플로우가 정상 작동하려면 GitHub 저장소에 다음 Secrets를 추가해야 합니다:
+
+1. **GitHub 저장소 페이지 접속**
+   - https://github.com/사용자명/kang-insurance 접속
+
+2. **Settings 메뉴 이동**
+   - 저장소 상단의 "Settings" 탭 클릭
+
+3. **Secrets and variables → Actions 이동**
+   - 왼쪽 사이드바에서 "Secrets and variables" 클릭
+   - "Actions" 선택
+
+4. **New repository secret 버튼 클릭**
+
+5. **다음 두 개의 Secret 추가**:
+
+   **Secret 1: SUPABASE_URL**
+   - Name: `SUPABASE_URL`
+   - Secret: `https://bfvrunxorsxgmeykvfru.supabase.co`
+   - "Add secret" 클릭
+
+   **Secret 2: SUPABASE_ANON_KEY**
+   - Name: `SUPABASE_ANON_KEY`
+   - Secret: `.env.local` 파일의 `NEXT_PUBLIC_SUPABASE_ANON_KEY` 값
+   - "Add secret" 클릭
+
+6. **설정 확인**
+   - Secrets 목록에 `SUPABASE_URL`과 `SUPABASE_ANON_KEY`가 표시되는지 확인
+
+### 수동 실행
+
+필요시 GitHub Actions에서 수동으로 워크플로우를 실행할 수 있습니다:
+
+1. GitHub 저장소의 "Actions" 탭 이동
+2. 왼쪽 사이드바에서 "Supabase Keep-Alive Ping" 선택
+3. "Run workflow" 버튼 클릭
+4. 브랜치 선택 후 "Run workflow" 클릭
+
+### 워크플로우 파일 위치
+
+- `.github/workflows/supabase-ping.yml`
+
+### 참고사항
+
+- 워크플로우는 `content_edits` 테이블에서 간단한 SELECT 쿼리를 실행합니다 (공개 조회 가능)
+- 실행 로그는 GitHub Actions 탭에서 확인할 수 있습니다
+- 오류 발생 시 GitHub Actions에서 알림을 받을 수 있습니다
+- UTC 시간 기준이므로 한국 시간(UTC+9)으로는 월요일, 목요일 오후 6시에 실행됩니다
+
 ## 📝 개발 가이드
 
 ### 새 페이지 추가

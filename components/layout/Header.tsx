@@ -86,6 +86,21 @@ export default function Header() {
               src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
               alt="Prime Asset"
               className="h-8 md:h-10 w-auto object-contain drop-shadow-lg"
+              onError={(e) => {
+                console.error('로고 이미지 로딩 실패:', e.currentTarget.src);
+                // 대체 텍스트 표시
+                e.currentTarget.style.display = 'none';
+                const parent = e.currentTarget.parentElement;
+                if (parent && !parent.querySelector('.logo-fallback')) {
+                  const fallback = document.createElement('span');
+                  fallback.className = 'logo-fallback';
+                  fallback.textContent = 'Prime Asset';
+                  fallback.style.color = '#2b2825';
+                  fallback.style.fontWeight = '700';
+                  fallback.style.fontSize = '18px';
+                  parent.appendChild(fallback);
+                }
+              }}
             />
           </Link>
 
@@ -121,6 +136,20 @@ export default function Header() {
                 src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png"
                 alt="Prime Asset"
                 className="h-7 w-auto object-contain drop-shadow-lg"
+                onError={(e) => {
+                  console.error('로고 이미지 로딩 실패:', e.currentTarget.src);
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent && !parent.querySelector('.logo-fallback')) {
+                    const fallback = document.createElement('span');
+                    fallback.className = 'logo-fallback';
+                    fallback.textContent = 'Prime Asset';
+                    fallback.style.color = '#2b2825';
+                    fallback.style.fontWeight = '700';
+                    fallback.style.fontSize = '16px';
+                    parent.appendChild(fallback);
+                  }
+                }}
               />
             </Link>
 
@@ -160,6 +189,20 @@ export default function Header() {
                     src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/log%20(1).png" 
                     alt="프라임에셋"
                     className="h-12 w-auto object-contain"
+                    onError={(e) => {
+                      console.error('로고 이미지 로딩 실패:', e.currentTarget.src);
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent && !parent.querySelector('.logo-fallback')) {
+                        const fallback = document.createElement('span');
+                        fallback.className = 'logo-fallback';
+                        fallback.textContent = 'Prime Asset';
+                        fallback.style.color = '#2b2825';
+                        fallback.style.fontWeight = '700';
+                        fallback.style.fontSize = '20px';
+                        parent.appendChild(fallback);
+                      }
+                    }}
                   />
                 </Link>
               </div>

@@ -63,12 +63,20 @@ export default function HeroSectionUpgraded() {
           src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/fi.jpg"
           alt="프라임에셋 배너"
           className="block w-full h-auto md:hidden"
+          onError={(e) => {
+            console.error('배너 이미지 로딩 실패:', e.currentTarget.src);
+            e.currentTarget.style.display = 'none';
+          }}
         />
         {/* 데스크톱 전용 이미지 */}
         <img 
           src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/fi.jpg"
           alt="프라임에셋 배너"
           className="hidden w-full h-auto md:block"
+          onError={(e) => {
+            console.error('배너 이미지 로딩 실패:', e.currentTarget.src);
+            e.currentTarget.style.display = 'none';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#faf8f3]/20" />
       </motion.div>
