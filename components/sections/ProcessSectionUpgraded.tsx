@@ -54,12 +54,12 @@ export default function ProcessSectionUpgraded() {
           {/* 눈길 끄는 메인 카피 */}
           <div style={{
             display: 'inline-block',
-            background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
+            background: 'linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%)',
             padding: 'clamp(18px, 3vw, 32px) clamp(32px, 5.5vw, 72px)',
             borderRadius: '64px',
             marginBottom: 'clamp(16px, 2.5vw, 22px)',
             boxShadow: '0 18px 45px rgba(15, 23, 42, 0.12)',
-            border: '1px solid #e5e7eb',
+            border: '1px solid #88d8a3',
             transform: 'scale(1)',
             transition: 'transform 0.3s ease'
           }}
@@ -69,7 +69,7 @@ export default function ProcessSectionUpgraded() {
             <p style={{ 
               fontSize: 'clamp(20px, 4.8vw, 42px)', 
               fontWeight: '800',
-              color: '#1a1a1a',
+              color: '#1a5d3a',
               margin: 0,
               display: 'flex',
               alignItems: 'center',

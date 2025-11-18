@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { 
   Heart,
   TrendingUp,
@@ -105,15 +105,88 @@ export default function RecruitingSection() {
     agreed: false
   });
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [scrollVelocity, setScrollVelocity] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
+  const [windowWidth, setWindowWidth] = useState(1920);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end']
+  });
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+        setWindowWidth(window.innerWidth);
+      }
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+  }, []);
+
+  // 스크롤 속도 및 방향 감지
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let lastScrollTop = window.pageYOffset;
+    let ticking = false;
+    let lastTime = Date.now();
+
+    const updateScrollVelocity = () => {
+      const currentScrollTop = window.pageYOffset;
+      const currentTime = Date.now();
+      const timeDelta = Math.max(currentTime - lastTime, 1);
+      const scrollDelta = currentScrollTop - lastScrollTop;
+      
+      // 스크롤 방향 감지
+      if (scrollDelta > 0) {
+        setScrollDirection('down');
+      } else if (scrollDelta < 0) {
+        setScrollDirection('up');
+      }
+      
+      // 스크롤 속도 계산 (픽셀/밀리초)
+      const velocity = Math.abs(scrollDelta) / timeDelta;
+      
+      setScrollVelocity(velocity);
+      setIsScrolling(velocity > 0.05);
+      
+      lastScrollTop = currentScrollTop;
+      lastTime = currentTime;
+      ticking = false;
+
+      // 스크롤이 멈추면 천천히 이동
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+        setScrollVelocity(0);
+      }, 100);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollVelocity);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -128,7 +201,62 @@ export default function RecruitingSection() {
   };
 
   return (
-    <div style={{ width: '100%', background: '#000', color: '#fff' }}>
+    <div ref={sectionRef} style={{ width: '100%', background: '#000', color: '#fff', position: 'relative' }}>
+      {/* 흐르는 RECRUITING 텍스트 */}
+      <div style={{
+        position: 'absolute',
+        top: '10px',
+        left: 0,
+        right: 0,
+        height: '110px',
+        overflow: 'hidden',
+        zIndex: 10,
+        pointerEvents: 'none',
+        background: '#000000'
+      }}>
+        <motion.div
+          style={{
+            display: 'flex',
+            whiteSpace: 'nowrap',
+            willChange: 'transform',
+            transform: 'translateY(15px)'
+          }}
+          animate={{
+            x: isScrolling && scrollDirection === 'up' 
+              ? [0, windowWidth * 3]
+              : [0, -windowWidth * 3]
+          }}
+          transition={{
+            duration: isScrolling 
+              ? Math.max(2, 5 - Math.min(scrollVelocity * 200, 3)) 
+              : 50,
+            repeat: Infinity,
+            ease: 'linear',
+            repeatType: 'loop'
+          }}
+        >
+          {[...Array(15)].map((_, i) => (
+            <span
+              key={i}
+              style={{
+                fontSize: 'clamp(50px, 10vw, 100px)',
+                fontWeight: '900',
+                color: '#ffffff',
+                WebkitTextStroke: '2px #000000',
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                letterSpacing: '0.05em',
+                marginRight: '60px',
+                textShadow: '0 0 0 #000000',
+                WebkitTextFillColor: '#ffffff',
+                lineHeight: '1'
+              } as React.CSSProperties}
+            >
+              RECRUITING
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
       {/* 도입 섹션: 프라임에셋에서 당신의 비전을 완성하세요 */}
       <section style={{ 
         position: 'relative', 
@@ -139,7 +267,8 @@ export default function RecruitingSection() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTop: '2px solid rgba(255, 255, 255, 0.1)'
+        borderTop: '2px solid rgba(255, 255, 255, 0.1)',
+        paddingTop: '130px'
       }}>
         {/* 배경 이미지 - 희망찬 이미지 */}
         <div style={{
