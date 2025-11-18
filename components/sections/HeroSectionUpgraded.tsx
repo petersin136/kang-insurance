@@ -60,7 +60,7 @@ export default function HeroSectionUpgraded() {
       >
         {/* 모바일 전용 이미지 */}
         <img 
-          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/fi.jpg"
+          src="https://bfvrunxorsxgmeykvfru.supabase.co/storage/v1/object/public/public-media/333.jpg"
           alt="프라임에셋 배너"
           className="block w-full h-auto md:hidden"
           onError={(e) => {
