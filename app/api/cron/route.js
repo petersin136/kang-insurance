@@ -11,7 +11,7 @@ export async function GET() {
 
     // 실제 DB 쿼리 실행 (페이지 1개만 조회)
     const { data, error } = await supabase
-      .from('app_public.pages')
+      .from('pages')
       .select('id')
       .limit(1);
 
