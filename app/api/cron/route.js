@@ -3,10 +3,13 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    // Supabase 클라이언트 생성 (서비스 롤 사용)
+    // Supabase 클라이언트 생성 (서비스 롤 사용, app_public 스키마 지정)
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      {
+        db: { schema: 'app_public' }
+      }
     );
 
     // 실제 DB 쿼리 실행 (페이지 1개만 조회)
